@@ -359,6 +359,12 @@ nav{
   50%{box-shadow:0 6px 30px var(--glow-gold),0 0 0 8px rgba(245,200,66,0)}
 }
 
+.btn-sky-glow{
+  background:linear-gradient(135deg,var(--sky),#0ea5e9);
+  color:#001520;
+  box-shadow:0 6px 30px var(--glow-sky);
+}
+.btn-sky-glow:hover{box-shadow:0 12px 50px var(--glow-sky)}
 .btn-emerald-glow{
   background:linear-gradient(135deg,var(--emerald),#00c87a);
   color:#001a0e;
@@ -1388,7 +1394,7 @@ footer{
         </div>
       </div>
       <div style="margin-top:36px">
-        <button class="btn-glow btn-primary-glow" onclick="addRipple(event,this);scrollTo('contact')">
+        <button class="btn-glow btn-primary-glow" onclick="addRipple(event,this);selectInquiry('입점 문의');scrollTo('contact')">
           📧 입점 문의 이메일 보내기
         </button>
       </div>
@@ -1463,7 +1469,7 @@ footer{
         </div>
       </div>
       <div style="margin-top:36px;display:flex;gap:12px;flex-wrap:wrap">
-        <button class="btn-glow btn-emerald-glow" onclick="addRipple(event,this);scrollTo('contact')">
+        <button class="btn-glow btn-emerald-glow" onclick="addRipple(event,this);selectInquiry('직접 판매 문의');scrollTo('contact')">
           📧 판매 문의하기
         </button>
         <button class="btn-glow btn-outline-glow" onclick="addRipple(event,this);scrollTo('contact')">
@@ -1500,7 +1506,7 @@ footer{
         </div>
       </div>
       <div style="margin-top:36px">
-        <button class="btn-glow btn-outline-glow" style="border-color:rgba(56,189,248,0.3);color:var(--sky)" onclick="addRipple(event,this);scrollTo('contact')">
+        <button class="btn-glow btn-sky-glow" onclick="addRipple(event,this);selectInquiry('도매 거래 문의');scrollTo('contact')">
           📧 도매 거래 문의하기
         </button>
       </div>
@@ -1874,6 +1880,15 @@ window.addEventListener('scroll',()=>{
     nav.style.boxShadow='none';
   }
 });
+
+/* ═══ AUTO SELECT INQUIRY TYPE ═══ */
+function selectInquiry(type) {
+  const sel = document.getElementById('inquiryType');
+  if (!sel) return;
+  for (let i = 0; i < sel.options.length; i++) {
+    if (sel.options[i].value === type) { sel.selectedIndex = i; break; }
+  }
+}
 
 /* ═══ EMAIL FORM ═══ */
 function sendEmail(e, btn) {
