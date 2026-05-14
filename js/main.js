@@ -179,143 +179,103 @@ document.querySelectorAll('.btn-glow').forEach(btn=>{
 });
 
 /* ══ PROMO 애니메이션 ══ */
-const ORDERS = [
-  { buyer:'㈜영신수산', product:'굴비 10kg × 5박스', status:'접수완료', statusColor:'var(--emerald)', dotColor:'#22d3ee', time:'방금' },
-  { buyer:'해진식품', product:'갈치 5kg × 10박스', status:'처리중', statusColor:'var(--gold)', dotColor:'var(--gold)', time:'1분 전' },
-  { buyer:'동해수산㈜', product:'새우 3kg × 20박스', status:'출고완료', statusColor:'#a78bfa', dotColor:'#a78bfa', time:'3분 전' },
-  { buyer:'남해로컬푸드', product:'전복 1kg × 8박스', status:'배송중', statusColor:'var(--sky)', dotColor:'var(--sky)', time:'7분 전' },
-  { buyer:'제주도청', product:'흑돼지 5kg × 12박스', status:'접수완료', statusColor:'var(--emerald)', dotColor:'#22d3ee', time:'12분 전' },
+const ORDERS=[
+  {buyer:'㈜영신수산',product:'굴비 10kg × 5박스',status:'접수완료',sc:'var(--emerald)',dc:'#22d3ee',time:'방금'},
+  {buyer:'해진식품',product:'갈치 5kg × 10박스',status:'처리중',sc:'var(--gold)',dc:'var(--gold)',time:'1분 전'},
+  {buyer:'동해수산㈜',product:'새우 3kg × 20박스',status:'출고완료',sc:'#a78bfa',dc:'#a78bfa',time:'3분 전'},
+  {buyer:'남해로컬푸드',product:'전복 1kg × 8박스',status:'배송중',sc:'var(--sky)',dc:'var(--sky)',time:'7분 전'},
+  {buyer:'제주도청',product:'흑돼지 5kg × 12박스',status:'접수완료',sc:'var(--emerald)',dc:'#22d3ee',time:'12분 전'},
 ];
-
-let pCurrent = 0;
-let pTimer = null;
-let pAnimTimer = null;
-let autoFillVal = 0;
-let autoFillTimer = null;
-
-function goPStep(n) {
-  clearInterval(pTimer);
-  clearInterval(pAnimTimer);
-  clearInterval(autoFillTimer);
-
-  // 탭/점 업데이트
-  document.querySelectorAll('.promo-nav-btn').forEach((b,i) => b.classList.toggle('active', i===n));
-  document.querySelectorAll('.promo-dot-nav').forEach((d,i) => d.classList.toggle('active', i===n));
-
-  // 스텝 전환
-  document.querySelectorAll('.promo-step').forEach((s,i) => {
-    s.classList.toggle('active', i===n);
-    if (i===n) s.style.animation = 'none', requestAnimationFrame(() => { s.style.animation = ''; });
-  });
-
-  // 진행 바
-  const bar = document.getElementById('promoProgBar');
-  if (bar) bar.style.width = ((n+1)*25)+'%';
-
-  pCurrent = n;
-
-  // 스텝별 애니메이션
-  if (n===0) runStep0();
-  if (n===2) runStep2();
-  if (n===3) runStep3();
-
-  // 자동 전환
-  pTimer = setInterval(() => goPStep((pCurrent+1)%4), 5000);
-}
-
-/* STEP 0: 주문 순차 등장 + 실시간 카운터 */
-function runStep0() {
-  const list = document.getElementById('orderList');
-  if (!list) return;
-  list.innerHTML = '';
-
-  ORDERS.forEach((o,i) => {
-    const div = document.createElement('div');
-    div.className = 'pol-item';
-    div.innerHTML = `
-      <div class="pol-dot" style="background:${o.dotColor};box-shadow:0 0 6px ${o.dotColor}"></div>
-      <div class="pol-buyer">${o.buyer}</div>
-      <div class="pol-product">${o.product}</div>
-      <span class="pol-status" style="background:${o.statusColor}22;border:1px solid ${o.statusColor}44;color:${o.statusColor}">${o.status}</span>
-      <div class="pol-time">${o.time}</div>`;
-    list.appendChild(div);
-    setTimeout(() => div.classList.add('show'), i * 280);
-  });
-
-  // 실시간 카운터
-  let cnt = 0; const target = 1284;
-  const el = document.getElementById('liveOrderCount');
-  pAnimTimer = setInterval(() => {
-    cnt = Math.min(cnt + 42, target);
-    if (el) el.textContent = cnt.toLocaleString();
-    if (cnt >= target) { clearInterval(pAnimTimer); addNewOrder(); }
-  }, 30);
-}
-
-/* 실시간 신규 주문 추가 */
-const newOrders = [
-  { buyer:'강원수산협동조합', product:'오징어 2kg × 15박스', status:'접수완료', statusColor:'var(--emerald)', dotColor:'#22d3ee', time:'방금' },
-  { buyer:'목포수협', product:'세발낙지 1kg × 6박스', status:'접수완료', statusColor:'var(--emerald)', dotColor:'#22d3ee', time:'방금' },
+const NEW_ORDERS=[
+  {buyer:'강원수산협동조합',product:'오징어 2kg × 15박스',status:'접수완료',sc:'var(--emerald)',dc:'#22d3ee',time:'방금'},
+  {buyer:'목포수협',product:'세발낙지 1kg × 6박스',status:'접수완료',sc:'var(--emerald)',dc:'#22d3ee',time:'방금'},
 ];
-let noIdx = 0;
-function addNewOrder() {
-  const list = document.getElementById('orderList');
-  const el = document.getElementById('liveOrderCount');
-  if (!list) return;
-  setInterval(() => {
-    const o = newOrders[noIdx++ % newOrders.length];
-    const div = document.createElement('div');
-    div.className = 'pol-item';
-    div.innerHTML = `
-      <div class="pol-dot" style="background:${o.dotColor};box-shadow:0 0 6px ${o.dotColor}"></div>
-      <div class="pol-buyer">${o.buyer}</div>
-      <div class="pol-product">${o.product}</div>
-      <span class="pol-status" style="background:${o.statusColor}22;border:1px solid ${o.statusColor}44;color:${o.statusColor}">${o.status}</span>
-      <div class="pol-time">${o.time}</div>`;
-    list.insertBefore(div, list.firstChild);
-    setTimeout(() => div.classList.add('show'), 50);
-    // 오래된 항목 제거
-    if (list.children.length > 5) list.removeChild(list.lastChild);
-    // 카운터 +1
-    if (el) el.textContent = (parseInt(el.textContent.replace(/,/g,''))+1).toLocaleString();
-  }, 2200);
+let pCurrent=0,pTimer=null,pAnimTimer=null,autoFillTimer=null,noIdx=0,newOrderTimer=null;
+
+function goPStep(n){
+  clearInterval(pTimer);clearInterval(pAnimTimer);clearInterval(autoFillTimer);clearInterval(newOrderTimer);
+  document.querySelectorAll('.promo-nav-btn').forEach((b,i)=>b.classList.toggle('active',i===n));
+  document.querySelectorAll('.promo-dot-nav').forEach((d,i)=>d.classList.toggle('active',i===n));
+  document.querySelectorAll('.promo-step').forEach((s,i)=>{
+    if(i===n){s.classList.add('active');s.style.animation='none';requestAnimationFrame(()=>{s.style.animation=''})}
+    else s.classList.remove('active');
+  });
+  const bar=document.getElementById('promoProgBar');
+  if(bar) bar.style.width=((n+1)*25)+'%';
+  pCurrent=n;
+  if(n===0) runStep0();
+  if(n===2) runStep2();
+  if(n===3) runStep3();
+  pTimer=setInterval(()=>goPStep((pCurrent+1)%4),5000);
 }
 
-/* STEP 2: 금액 카운트업 */
-function runStep2() {
-  let v = 0; const target = 240000000;
-  const el = document.getElementById('salesCount');
-  pAnimTimer = setInterval(() => {
-    v = Math.min(v + 8000000, target);
-    if (el) el.textContent = '₩' + (v/100000000).toFixed(1) + '억';
-    if (v >= target) clearInterval(pAnimTimer);
-  }, 35);
+function makeOrderItem(o){
+  const d=document.createElement('div');
+  d.className='pol-item';
+  d.innerHTML=`<div class="pol-dot" style="background:${o.dc};box-shadow:0 0 6px ${o.dc}"></div>
+    <div class="pol-buyer">${o.buyer}</div>
+    <div class="pol-product">${o.product}</div>
+    <span class="pol-status" style="background:${o.sc}22;border:1px solid ${o.sc}44;color:${o.sc}">${o.status}</span>
+    <div class="pol-time">${o.time}</div>`;
+  return d;
 }
 
-/* STEP 3: 자동 발주서 진행 바 */
-function runStep3() {
-  autoFillVal = 0;
-  const fill = document.getElementById('autoFill');
-  const pct  = document.getElementById('autoPct');
-  autoFillTimer = setInterval(() => {
-    autoFillVal = Math.min(autoFillVal + 2, 100);
-    if (fill) fill.style.width = autoFillVal + '%';
-    if (pct)  pct.textContent  = autoFillVal + '%';
-    if (autoFillVal >= 100) {
+function runStep0(){
+  const list=document.getElementById('orderList');
+  if(!list) return;
+  list.innerHTML='';
+  ORDERS.forEach((o,i)=>{
+    const d=makeOrderItem(o);
+    list.appendChild(d);
+    setTimeout(()=>d.classList.add('show'),i*280);
+  });
+  let cnt=0;const target=1284;
+  const el=document.getElementById('liveOrderCount');
+  pAnimTimer=setInterval(()=>{
+    cnt=Math.min(cnt+42,target);
+    if(el) el.textContent=cnt.toLocaleString();
+    if(cnt>=target){clearInterval(pAnimTimer);startNewOrders();}
+  },30);
+}
+
+function startNewOrders(){
+  const list=document.getElementById('orderList');
+  const el=document.getElementById('liveOrderCount');
+  if(!list) return;
+  newOrderTimer=setInterval(()=>{
+    const o=NEW_ORDERS[noIdx++%NEW_ORDERS.length];
+    const d=makeOrderItem(o);
+    list.insertBefore(d,list.firstChild);
+    setTimeout(()=>d.classList.add('show'),50);
+    if(list.children.length>5) list.removeChild(list.lastChild);
+    if(el) el.textContent=(parseInt(el.textContent.replace(/,/g,''))+1).toLocaleString();
+  },2200);
+}
+
+function runStep2(){
+  let v=0;const target=240000000;
+  const el=document.getElementById('salesCount');
+  pAnimTimer=setInterval(()=>{
+    v=Math.min(v+8000000,target);
+    if(el) el.textContent='₩'+(v/100000000).toFixed(1)+'억';
+    if(v>=target) clearInterval(pAnimTimer);
+  },35);
+}
+
+function runStep3(){
+  let val=0;
+  const fill=document.getElementById('autoFill');
+  const pct=document.getElementById('autoPct');
+  autoFillTimer=setInterval(()=>{
+    val=Math.min(val+2,100);
+    if(fill) fill.style.width=val+'%';
+    if(pct)  pct.textContent=val+'%';
+    if(val>=100){
       clearInterval(autoFillTimer);
-      if (pct) pct.textContent = '✅ 완료';
-      // 재시작
-      setTimeout(() => {
-        autoFillVal = 0;
-        if (fill) fill.style.width = '0%';
-        if (pct)  pct.textContent  = '0%';
-        runStep3();
-      }, 1500);
+      if(pct) pct.textContent='✅ 완료';
+      setTimeout(()=>{val=0;if(fill) fill.style.width='0%';if(pct) pct.textContent='0%';runStep3();},1500);
     }
-  }, 40);
+  },40);
 }
 
-/* 초기 시작 */
-document.addEventListener('DOMContentLoaded', () => {
-  goPStep(0);
-});
+document.addEventListener('DOMContentLoaded',()=>{ goPStep(0); });
