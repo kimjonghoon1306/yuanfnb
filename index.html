@@ -1336,6 +1336,217 @@ footer{
   </div>
 </div>
 
+</div>
+
+<!-- ══ PROMO 애니메이션 섹션 ══ -->
+<div class="promo-section" id="promo">
+  <div class="tc">
+    <div class="section-eyebrow">⚡ 플랫폼 미리보기</div>
+    <h2 class="section-title">숫자로 보는 <span class="glow">유안 F&B</span></h2>
+    <p class="section-sub">입점부터 매출 분석까지, 실시간으로 움직이는 플랫폼을 직접 확인하세요.</p>
+  </div>
+
+  <!-- 탭 네비 -->
+  <div class="promo-nav">
+    <button class="promo-nav-btn active" data-step="0" onclick="goPStep(0)">🛒 주문 현황</button>
+    <button class="promo-nav-btn" data-step="1" onclick="goPStep(1)">🌾 상품 관리</button>
+    <button class="promo-nav-btn" data-step="2" onclick="goPStep(2)">💰 매출 분석</button>
+    <button class="promo-nav-btn" data-step="3" onclick="goPStep(3)">📦 도매 관리</button>
+  </div>
+  <!-- 진행 바 -->
+  <div class="promo-prog-wrap"><div class="promo-prog-bar" id="promoProgBar"></div></div>
+
+  <!-- 스텝 컨테이너 -->
+  <div class="promo-stage">
+
+    <!-- STEP 0: 주문 현황 -->
+    <div class="promo-step active" id="pstep-0">
+      <div class="promo-left">
+        <div class="promo-step-num">01</div>
+        <h3>실시간 주문이 쏟아져요</h3>
+        <p>전국 842개 업체의 주문이 실시간으로 들어옵니다. 소매·도매·B2B 채널 통합 관리.</p>
+        <div class="promo-tags">
+          <span class="ptag ptag-gold">⚡ 실시간 수신</span>
+          <span class="ptag ptag-emerald">✅ 자동 확인</span>
+          <span class="ptag ptag-sky">📱 모바일 알림</span>
+        </div>
+        <!-- 라이브 카운터 -->
+        <div class="promo-live-box">
+          <div class="promo-live-dot"></div>
+          <span class="promo-live-label">오늘 주문</span>
+          <span class="promo-live-num" id="liveOrderCount">0</span>
+          <span class="promo-live-unit">건</span>
+        </div>
+      </div>
+      <div class="promo-right">
+        <div class="promo-card-wrap">
+          <div class="promo-order-header">
+            <span class="promo-dot-red"></span><span class="promo-dot-yellow"></span><span class="promo-dot-green"></span>
+            <span style="margin-left:8px;font-size:11px;color:var(--text3);">유안 F&B — 주문 관리</span>
+          </div>
+          <div class="promo-order-list" id="orderList">
+            <!-- JS로 생성 -->
+          </div>
+          <div class="promo-order-footer">
+            <span class="promo-badge-live">● LIVE</span>
+            <span style="font-size:11px;color:var(--text3);">자동 새로고침 중...</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- STEP 1: 상품 관리 -->
+    <div class="promo-step" id="pstep-1">
+      <div class="promo-left">
+        <div class="promo-step-num">02</div>
+        <h3>전국 먹거리가 한 곳에</h3>
+        <p>수산물·농산물·축산물·가공식품까지. 카테고리별 실시간 재고와 신선도를 한눈에.</p>
+        <div class="promo-tags">
+          <span class="ptag ptag-gold">🐟 수산물</span>
+          <span class="ptag ptag-emerald">🌾 농산물</span>
+          <span class="ptag ptag-rose">🥩 축산물</span>
+          <span class="ptag ptag-sky">🏭 가공식품</span>
+        </div>
+      </div>
+      <div class="promo-right">
+        <div class="promo-card-wrap">
+          <div class="promo-order-header">
+            <span class="promo-dot-red"></span><span class="promo-dot-yellow"></span><span class="promo-dot-green"></span>
+            <span style="margin-left:8px;font-size:11px;color:var(--text3);">재고 현황</span>
+          </div>
+          <div class="promo-product-grid">
+            <div class="promo-product-item" style="--d:0.05s">
+              <span class="ppi-icon">🐟</span>
+              <div class="ppi-info"><div class="ppi-name">영광 법성포 굴비</div><div class="ppi-sub">신선 · 재고 85%</div></div>
+              <div class="ppi-bar-wrap"><div class="ppi-bar" style="--w:85%;--c:var(--emerald)"></div></div>
+            </div>
+            <div class="promo-product-item" style="--d:0.15s">
+              <span class="ppi-icon">🌾</span>
+              <div class="ppi-info"><div class="ppi-name">완도 유기농 쌀</div><div class="ppi-sub">GAP인증 · 재고 62%</div></div>
+              <div class="ppi-bar-wrap"><div class="ppi-bar" style="--w:62%;--c:var(--gold)"></div></div>
+            </div>
+            <div class="promo-product-item" style="--d:0.25s">
+              <span class="ppi-icon">🥩</span>
+              <div class="ppi-info"><div class="ppi-name">제주 흑돼지 삼겹살</div><div class="ppi-sub">무항생제 · 재고 91%</div></div>
+              <div class="ppi-bar-wrap"><div class="ppi-bar" style="--w:91%;--c:var(--sky)"></div></div>
+            </div>
+            <div class="promo-product-item" style="--d:0.35s">
+              <span class="ppi-icon">🦀</span>
+              <div class="ppi-info"><div class="ppi-name">동해 살아있는 홍게</div><div class="ppi-sub">당일 직송 · 재고 28%</div></div>
+              <div class="ppi-bar-wrap"><div class="ppi-bar" style="--w:28%;--c:var(--rose)"></div></div>
+            </div>
+            <div class="promo-product-item" style="--d:0.45s">
+              <span class="ppi-icon">🍯</span>
+              <div class="ppi-info"><div class="ppi-name">지리산 천연 벌꿀</div><div class="ppi-sub">유기농 인증 · 재고 74%</div></div>
+              <div class="ppi-bar-wrap"><div class="ppi-bar" style="--w:74%;--c:#a78bfa"></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- STEP 2: 매출 분석 -->
+    <div class="promo-step" id="pstep-2">
+      <div class="promo-left">
+        <div class="promo-step-num">03</div>
+        <h3>매출이 실시간으로 쌓여요</h3>
+        <p>채널별·상품별·기간별 매출을 한눈에. 데이터 기반으로 판매 전략을 세우세요.</p>
+        <div class="promo-tags">
+          <span class="ptag ptag-gold">📊 실시간 분석</span>
+          <span class="ptag ptag-emerald">📈 성장 추이</span>
+        </div>
+        <div class="promo-count-big">
+          <div class="promo-count-label">이번 달 누적 매출</div>
+          <div class="promo-count-val" id="salesCount">₩0</div>
+          <div class="promo-count-badge">▲ 전월 대비 +23%</div>
+        </div>
+      </div>
+      <div class="promo-right">
+        <div class="promo-card-wrap">
+          <div class="promo-order-header">
+            <span class="promo-dot-red"></span><span class="promo-dot-yellow"></span><span class="promo-dot-green"></span>
+            <span style="margin-left:8px;font-size:11px;color:var(--text3);">매출 대시보드</span>
+          </div>
+          <!-- 미니 바 차트 -->
+          <div class="promo-chart">
+            <div class="promo-chart-bars">
+              <div class="pcb-item"><div class="pcb-bar" style="--h:45%;--c:var(--gold)"></div><div class="pcb-label">1월</div></div>
+              <div class="pcb-item"><div class="pcb-bar" style="--h:58%;--c:var(--gold)"></div><div class="pcb-label">2월</div></div>
+              <div class="pcb-item"><div class="pcb-bar" style="--h:42%;--c:var(--gold)"></div><div class="pcb-label">3월</div></div>
+              <div class="pcb-item"><div class="pcb-bar" style="--h:72%;--c:var(--gold)"></div><div class="pcb-label">4월</div></div>
+              <div class="pcb-item"><div class="pcb-bar" style="--h:65%;--c:var(--gold)"></div><div class="pcb-label">5월</div></div>
+              <div class="pcb-item"><div class="pcb-bar active" style="--h:100%;--c:var(--emerald)"></div><div class="pcb-label" style="color:var(--emerald)">6월</div></div>
+            </div>
+            <div class="promo-chart-stats">
+              <div class="pcs-item"><div class="pcs-val" style="color:var(--emerald)">₩2.4억</div><div class="pcs-label">누적 GMV</div></div>
+              <div class="pcs-item"><div class="pcs-val" style="color:var(--gold)">842+</div><div class="pcs-label">활성 업체</div></div>
+              <div class="pcs-item"><div class="pcs-val" style="color:var(--sky)">99%</div><div class="pcs-label">만족도</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- STEP 3: 도매 관리 -->
+    <div class="promo-step" id="pstep-3">
+      <div class="promo-left">
+        <div class="promo-step-num">04</div>
+        <h3>도매 업무가 자동화돼요</h3>
+        <p>거래처별 맞춤 단가, 자동 발주서, 재고 연동. 복잡한 도매 업무를 시스템이 처리합니다.</p>
+        <div class="promo-tags">
+          <span class="ptag ptag-gold">📋 자동 발주서</span>
+          <span class="ptag ptag-purple">🔄 재고 연동</span>
+        </div>
+      </div>
+      <div class="promo-right">
+        <div class="promo-card-wrap">
+          <div class="promo-order-header">
+            <span class="promo-dot-red"></span><span class="promo-dot-yellow"></span><span class="promo-dot-green"></span>
+            <span style="margin-left:8px;font-size:11px;color:var(--text3);">도매 거래처 현황</span>
+          </div>
+          <div class="promo-wholesale-list">
+            <div class="pwl-item" style="--d:0.05s">
+              <div class="pwl-avatar" style="background:linear-gradient(135deg,var(--gold),var(--gold2))">㈜</div>
+              <div class="pwl-info"><div class="pwl-name">㈜대한수산유통</div><div class="pwl-sub">월 발주 42회 · 도매가 적용</div></div>
+              <div class="pwl-badge" style="color:var(--emerald)">VIP</div>
+            </div>
+            <div class="pwl-item" style="--d:0.15s">
+              <div class="pwl-avatar" style="background:linear-gradient(135deg,var(--sky),#60a5fa)">동</div>
+              <div class="pwl-info"><div class="pwl-name">동해식품㈜</div><div class="pwl-sub">월 발주 28회 · 특별 단가</div></div>
+              <div class="pwl-badge" style="color:var(--sky)">우수</div>
+            </div>
+            <div class="pwl-item" style="--d:0.25s">
+              <div class="pwl-avatar" style="background:linear-gradient(135deg,var(--emerald),#34d399)">남</div>
+              <div class="pwl-info"><div class="pwl-name">남해농수산</div><div class="pwl-sub">월 발주 19회 · 일반 단가</div></div>
+              <div class="pwl-badge" style="color:var(--gold)">일반</div>
+            </div>
+            <div class="pwl-item" style="--d:0.35s">
+              <div class="pwl-avatar" style="background:linear-gradient(135deg,#a78bfa,#c084fc)">제</div>
+              <div class="pwl-info"><div class="pwl-name">제주도 로컬푸드</div><div class="pwl-sub">월 발주 35회 · 도매가 적용</div></div>
+              <div class="pwl-badge" style="color:#a78bfa">파트너</div>
+            </div>
+          </div>
+          <!-- 자동 발주서 생성 애니메이션 -->
+          <div class="promo-auto-box">
+            <span style="font-size:12px;color:var(--text3);">🤖 자동 발주서 생성 중</span>
+            <div class="promo-auto-bar"><div class="promo-auto-fill" id="autoFill"></div></div>
+            <span class="promo-auto-pct" id="autoPct">0%</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- promo-stage -->
+
+  <!-- 하단 점 네비 -->
+  <div class="promo-dots-wrap">
+    <div class="promo-dot-nav active" data-step="0" onclick="goPStep(0)"></div>
+    <div class="promo-dot-nav" data-step="1" onclick="goPStep(1)"></div>
+    <div class="promo-dot-nav" data-step="2" onclick="goPStep(2)"></div>
+    <div class="promo-dot-nav" data-step="3" onclick="goPStep(3)"></div>
+  </div>
+</div>
+
 <!-- ══ PLATFORM ══ -->
 <section class="platform" id="platform">
   <div class="tc">
