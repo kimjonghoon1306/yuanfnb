@@ -1409,12 +1409,12 @@ footer{
             <span class="promo-mac-dot" style="background:#28c840"></span>
             <span style="margin-left:8px;font-size:11px;color:var(--text3);">재고 현황</span>
           </div>
-          <div class="promo-product-grid">
-            <div class="promo-product-item" style="--d:0.05s"><span class="ppi-icon">🐟</span><div class="ppi-info"><div class="ppi-name">영광 법성포 굴비</div><div class="ppi-sub">신선 · 재고 85%</div></div><div class="ppi-bar-wrap"><div class="ppi-bar" style="--w:85%;--c:var(--emerald)"></div></div></div>
-            <div class="promo-product-item" style="--d:0.15s"><span class="ppi-icon">🌾</span><div class="ppi-info"><div class="ppi-name">완도 유기농 쌀</div><div class="ppi-sub">GAP인증 · 재고 62%</div></div><div class="ppi-bar-wrap"><div class="ppi-bar" style="--w:62%;--c:var(--gold)"></div></div></div>
-            <div class="promo-product-item" style="--d:0.25s"><span class="ppi-icon">🥩</span><div class="ppi-info"><div class="ppi-name">제주 흑돼지 삼겹살</div><div class="ppi-sub">무항생제 · 재고 91%</div></div><div class="ppi-bar-wrap"><div class="ppi-bar" style="--w:91%;--c:var(--sky)"></div></div></div>
-            <div class="promo-product-item" style="--d:0.35s"><span class="ppi-icon">🦀</span><div class="ppi-info"><div class="ppi-name">동해 살아있는 홍게</div><div class="ppi-sub">당일 직송 · 재고 28%</div></div><div class="ppi-bar-wrap"><div class="ppi-bar" style="--w:28%;--c:var(--rose)"></div></div></div>
-            <div class="promo-product-item" style="--d:0.45s"><span class="ppi-icon">🍯</span><div class="ppi-info"><div class="ppi-name">지리산 천연 벌꿀</div><div class="ppi-sub">유기농 인증 · 재고 74%</div></div><div class="ppi-bar-wrap"><div class="ppi-bar" style="--w:74%;--c:#a78bfa"></div></div></div>
+          <div id="productGrid" style="padding:12px">
+            <div class="ppi" data-w="85%" data-c="#00e5a0" style="display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:10px;background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.08);margin-bottom:6px;opacity:0;transition:opacity 0.4s ease,transform 0.4s ease;transform:translateX(10px)"><span style="font-size:20px;flex-shrink:0">🐟</span><div style="flex:1;min-width:0"><div style="font-size:12px;font-weight:700;color:#f1f5f9">영광 법성포 굴비</div><div style="font-size:10px;color:#94a3b8;margin-top:2px">신선 · 재고 85%</div></div><div style="width:60px;flex-shrink:0"><div class="ppi-b" style="height:4px;border-radius:2px;width:0;transition:width 0.9s cubic-bezier(0.34,1.2,0.64,1);background:#00e5a0"></div></div></div>
+            <div class="ppi" data-w="62%" data-c="#f5c842" style="display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:10px;background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.08);margin-bottom:6px;opacity:0;transition:opacity 0.4s ease,transform 0.4s ease;transform:translateX(10px)"><span style="font-size:20px;flex-shrink:0">🌾</span><div style="flex:1;min-width:0"><div style="font-size:12px;font-weight:700;color:#f1f5f9">완도 유기농 쌀</div><div style="font-size:10px;color:#94a3b8;margin-top:2px">GAP인증 · 재고 62%</div></div><div style="width:60px;flex-shrink:0"><div class="ppi-b" style="height:4px;border-radius:2px;width:0;transition:width 0.9s cubic-bezier(0.34,1.2,0.64,1);background:#f5c842"></div></div></div>
+            <div class="ppi" data-w="91%" data-c="#38bdf8" style="display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:10px;background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.08);margin-bottom:6px;opacity:0;transition:opacity 0.4s ease,transform 0.4s ease;transform:translateX(10px)"><span style="font-size:20px;flex-shrink:0">🥩</span><div style="flex:1;min-width:0"><div style="font-size:12px;font-weight:700;color:#f1f5f9">제주 흑돼지 삼겹살</div><div style="font-size:10px;color:#94a3b8;margin-top:2px">무항생제 · 재고 91%</div></div><div style="width:60px;flex-shrink:0"><div class="ppi-b" style="height:4px;border-radius:2px;width:0;transition:width 0.9s cubic-bezier(0.34,1.2,0.64,1);background:#38bdf8"></div></div></div>
+            <div class="ppi" data-w="28%" data-c="#fb7185" style="display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:10px;background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.08);margin-bottom:6px;opacity:0;transition:opacity 0.4s ease,transform 0.4s ease;transform:translateX(10px)"><span style="font-size:20px;flex-shrink:0">🦀</span><div style="flex:1;min-width:0"><div style="font-size:12px;font-weight:700;color:#f1f5f9">동해 살아있는 홍게</div><div style="font-size:10px;color:#94a3b8;margin-top:2px">당일 직송 · 재고 28%</div></div><div style="width:60px;flex-shrink:0"><div class="ppi-b" style="height:4px;border-radius:2px;width:0;transition:width 0.9s cubic-bezier(0.34,1.2,0.64,1);background:#fb7185"></div></div></div>
+            <div class="ppi" data-w="74%" data-c="#a78bfa" style="display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:10px;background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.08);margin-bottom:6px;opacity:0;transition:opacity 0.4s ease,transform 0.4s ease;transform:translateX(10px)"><span style="font-size:20px;flex-shrink:0">🍯</span><div style="flex:1;min-width:0"><div style="font-size:12px;font-weight:700;color:#f1f5f9">지리산 천연 벌꿀</div><div style="font-size:10px;color:#94a3b8;margin-top:2px">유기농 인증 · 재고 74%</div></div><div style="width:60px;flex-shrink:0"><div class="ppi-b" style="height:4px;border-radius:2px;width:0;transition:width 0.9s cubic-bezier(0.34,1.2,0.64,1);background:#a78bfa"></div></div></div>
           </div>
         </div>
       </div>
@@ -1444,19 +1444,19 @@ footer{
             <span class="promo-mac-dot" style="background:#28c840"></span>
             <span style="margin-left:8px;font-size:11px;color:var(--text3);">매출 대시보드</span>
           </div>
-          <div class="promo-chart">
-            <div class="promo-chart-bars">
-              <div class="pcb-item"><div class="pcb-bar" style="--h:45%;--c:var(--gold)"></div><div class="pcb-label">1월</div></div>
-              <div class="pcb-item"><div class="pcb-bar" style="--h:58%;--c:var(--gold)"></div><div class="pcb-label">2월</div></div>
-              <div class="pcb-item"><div class="pcb-bar" style="--h:42%;--c:var(--gold)"></div><div class="pcb-label">3월</div></div>
-              <div class="pcb-item"><div class="pcb-bar" style="--h:72%;--c:var(--gold)"></div><div class="pcb-label">4월</div></div>
-              <div class="pcb-item"><div class="pcb-bar" style="--h:65%;--c:var(--gold)"></div><div class="pcb-label">5월</div></div>
-              <div class="pcb-item"><div class="pcb-bar active" style="--h:100%;--c:var(--emerald)"></div><div class="pcb-label" style="color:var(--emerald)">6월</div></div>
+          <div style="padding:16px">
+            <div id="chartBars" style="display:flex;align-items:flex-end;gap:8px;height:110px;margin-bottom:14px">
+              <div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;gap:4px;height:100%"><div class="cb" data-h="45%" style="width:100%;border-radius:4px 4px 0 0;height:0;transition:height 0.7s cubic-bezier(0.34,1.2,0.64,1);background:#f5c842;opacity:0.65"></div><div style="font-size:10px;color:#64748b;">1월</div></div>
+              <div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;gap:4px;height:100%"><div class="cb" data-h="58%" style="width:100%;border-radius:4px 4px 0 0;height:0;transition:height 0.7s cubic-bezier(0.34,1.2,0.64,1);background:#f5c842;opacity:0.65"></div><div style="font-size:10px;color:#64748b;">2월</div></div>
+              <div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;gap:4px;height:100%"><div class="cb" data-h="42%" style="width:100%;border-radius:4px 4px 0 0;height:0;transition:height 0.7s cubic-bezier(0.34,1.2,0.64,1);background:#f5c842;opacity:0.65"></div><div style="font-size:10px;color:#64748b;">3월</div></div>
+              <div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;gap:4px;height:100%"><div class="cb" data-h="72%" style="width:100%;border-radius:4px 4px 0 0;height:0;transition:height 0.7s cubic-bezier(0.34,1.2,0.64,1);background:#f5c842;opacity:0.65"></div><div style="font-size:10px;color:#64748b;">4월</div></div>
+              <div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;gap:4px;height:100%"><div class="cb" data-h="65%" style="width:100%;border-radius:4px 4px 0 0;height:0;transition:height 0.7s cubic-bezier(0.34,1.2,0.64,1);background:#f5c842;opacity:0.65"></div><div style="font-size:10px;color:#64748b;">5월</div></div>
+              <div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;gap:4px;height:100%"><div class="cb" data-h="100%" style="width:100%;border-radius:4px 4px 0 0;height:0;transition:height 0.7s cubic-bezier(0.34,1.2,0.64,1);background:#00e5a0;box-shadow:0 0 12px #00e5a0"></div><div style="font-size:10px;color:#64748b;color:#00e5a0;font-weight:700">6월</div></div>
             </div>
-            <div class="promo-chart-stats">
-              <div class="pcs-item"><div class="pcs-val" style="color:var(--emerald)">₩2.4억</div><div class="pcs-label">누적 GMV</div></div>
-              <div class="pcs-item"><div class="pcs-val" style="color:var(--gold)">842+</div><div class="pcs-label">활성 업체</div></div>
-              <div class="pcs-item"><div class="pcs-val" style="color:var(--sky)">99%</div><div class="pcs-label">만족도</div></div>
+            <div style="display:flex;gap:8px">
+              <div style="flex:1;text-align:center;padding:10px 6px;background:rgba(255,255,255,0.05);border-radius:10px;border:1px solid rgba(255,255,255,0.08)"><div style="font-size:15px;font-weight:900;color:#00e5a0">₩2.4억</div><div style="font-size:10px;color:#64748b;margin-top:3px">누적 GMV</div></div>
+              <div style="flex:1;text-align:center;padding:10px 6px;background:rgba(255,255,255,0.05);border-radius:10px;border:1px solid rgba(255,255,255,0.08)"><div style="font-size:15px;font-weight:900;color:#f5c842">842+</div><div style="font-size:10px;color:#64748b;margin-top:3px">활성 업체</div></div>
+              <div style="flex:1;text-align:center;padding:10px 6px;background:rgba(255,255,255,0.05);border-radius:10px;border:1px solid rgba(255,255,255,0.08)"><div style="font-size:15px;font-weight:900;color:#38bdf8">99%</div><div style="font-size:10px;color:#64748b;margin-top:3px">만족도</div></div>
             </div>
           </div>
         </div>
@@ -1482,11 +1482,27 @@ footer{
             <span class="promo-mac-dot" style="background:#28c840"></span>
             <span style="margin-left:8px;font-size:11px;color:var(--text3);">도매 거래처 현황</span>
           </div>
-          <div class="promo-wholesale-list">
-            <div class="pwl-item" style="--d:0.05s"><div class="pwl-avatar" style="background:linear-gradient(135deg,var(--gold),var(--gold2))">㈜</div><div class="pwl-info"><div class="pwl-name">㈜대한수산유통</div><div class="pwl-sub">월 발주 42회 · 도매가 적용</div></div><div class="pwl-badge" style="color:var(--emerald)">VIP</div></div>
-            <div class="pwl-item" style="--d:0.15s"><div class="pwl-avatar" style="background:linear-gradient(135deg,var(--sky),#60a5fa)">동</div><div class="pwl-info"><div class="pwl-name">동해식품㈜</div><div class="pwl-sub">월 발주 28회 · 특별 단가</div></div><div class="pwl-badge" style="color:var(--sky)">우수</div></div>
-            <div class="pwl-item" style="--d:0.25s"><div class="pwl-avatar" style="background:linear-gradient(135deg,var(--emerald),#34d399)">남</div><div class="pwl-info"><div class="pwl-name">남해농수산</div><div class="pwl-sub">월 발주 19회 · 일반 단가</div></div><div class="pwl-badge" style="color:var(--gold)">일반</div></div>
-            <div class="pwl-item" style="--d:0.35s"><div class="pwl-avatar" style="background:linear-gradient(135deg,#a78bfa,#c084fc)">제</div><div class="pwl-info"><div class="pwl-name">제주도 로컬푸드</div><div class="pwl-sub">월 발주 35회 · 도매가 적용</div></div><div class="pwl-badge" style="color:#a78bfa">파트너</div></div>
+          <div style="padding:10px;display:flex;flex-direction:column;gap:0">
+            <div style="display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:12px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);margin-bottom:6px;opacity:1;transform:none">
+              <span style="display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;min-width:34px;max-width:34px;border-radius:10px;font-size:12px;font-weight:900;flex-shrink:0;flex-grow:0;overflow:hidden;background:linear-gradient(135deg,#f5c842,#e8a020);color:#111">㈜</span>
+              <div style="flex:1;min-width:0;overflow:hidden"><div style="font-size:12px;font-weight:700;color:#f1f5f9;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">㈜대한수산유통</div><div style="font-size:10px;color:#94a3b8;margin-top:2px">월 발주 42회 · 도매가 적용</div></div>
+              <span style="font-size:11px;font-weight:800;flex-shrink:0;white-space:nowrap;color:#00e5a0">VIP</span>
+            </div>
+            <div style="display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:12px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);margin-bottom:6px;opacity:1;transform:none">
+              <span style="display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;min-width:34px;max-width:34px;border-radius:10px;font-size:12px;font-weight:900;flex-shrink:0;flex-grow:0;overflow:hidden;background:linear-gradient(135deg,#38bdf8,#60a5fa);color:#111">동</span>
+              <div style="flex:1;min-width:0;overflow:hidden"><div style="font-size:12px;font-weight:700;color:#f1f5f9;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">동해식품㈜</div><div style="font-size:10px;color:#94a3b8;margin-top:2px">월 발주 28회 · 특별 단가</div></div>
+              <span style="font-size:11px;font-weight:800;flex-shrink:0;white-space:nowrap;color:#38bdf8">우수</span>
+            </div>
+            <div style="display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:12px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);margin-bottom:6px;opacity:1;transform:none">
+              <span style="display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;min-width:34px;max-width:34px;border-radius:10px;font-size:12px;font-weight:900;flex-shrink:0;flex-grow:0;overflow:hidden;background:linear-gradient(135deg,#00e5a0,#34d399);color:#111">남</span>
+              <div style="flex:1;min-width:0;overflow:hidden"><div style="font-size:12px;font-weight:700;color:#f1f5f9;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">남해농수산</div><div style="font-size:10px;color:#94a3b8;margin-top:2px">월 발주 19회 · 일반 단가</div></div>
+              <span style="font-size:11px;font-weight:800;flex-shrink:0;white-space:nowrap;color:#f5c842">일반</span>
+            </div>
+            <div style="display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:12px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);margin-bottom:6px;opacity:1;transform:none">
+              <span style="display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;min-width:34px;max-width:34px;border-radius:10px;font-size:12px;font-weight:900;flex-shrink:0;flex-grow:0;overflow:hidden;background:linear-gradient(135deg,#a78bfa,#c084fc);color:#fff">제</span>
+              <div style="flex:1;min-width:0;overflow:hidden"><div style="font-size:12px;font-weight:700;color:#f1f5f9;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">제주도 로컬푸드</div><div style="font-size:10px;color:#94a3b8;margin-top:2px">월 발주 35회 · 도매가 적용</div></div>
+              <span style="font-size:11px;font-weight:800;flex-shrink:0;white-space:nowrap;color:#a78bfa">파트너</span>
+            </div>
           </div>
           <div class="promo-auto-box">
             <span style="font-size:12px;color:var(--text3);">🤖 자동 발주서 생성 중</span>
