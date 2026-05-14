@@ -1158,95 +1158,219 @@ footer{
 }
 
 /* ══════════════════════════════════════
-   PROMO 애니메이션 섹션
+   CINEMA SHOWCASE
 ══════════════════════════════════════ */
-.promo-section{padding:100px 6%;position:relative;z-index:2;background:var(--bg)}
-
-/* 탭 */
-.promo-nav{display:flex;justify-content:center;gap:8px;margin:40px 0 0;flex-wrap:wrap}
-.promo-nav-btn{padding:10px 20px;border-radius:100px;font-size:13px;font-weight:600;border:1.5px solid var(--border);background:transparent;color:var(--text2);cursor:pointer;font-family:inherit;transition:all .2s}
-.promo-nav-btn:hover{border-color:var(--gold);color:var(--gold)}
-.promo-nav-btn.active{background:linear-gradient(135deg,var(--gold),var(--gold2));border-color:transparent;color:#111;font-weight:800;box-shadow:0 4px 20px var(--glow-gold)}
-
-/* 진행바 */
-.promo-prog-wrap{height:2px;background:var(--border);margin:16px auto 0;max-width:1200px;border-radius:2px;overflow:hidden}
-.promo-prog-bar{height:100%;width:25%;background:linear-gradient(90deg,var(--gold),var(--emerald));transition:width .4s ease;border-radius:2px}
-
-/* 스텝 */
-.promo-stage{max-width:1200px;margin:40px auto 0}
-.promo-step{display:none;grid-template-columns:1fr 1fr;gap:60px;align-items:center;animation:promoStepIn .45s cubic-bezier(.34,1.2,.64,1)}
-.promo-step.active{display:grid}
-@keyframes promoStepIn{from{opacity:0;transform:translateY(18px) scale(.98)}to{opacity:1;transform:translateY(0) scale(1)}}
-
-/* 왼쪽 */
-.promo-left{padding:20px 0}
-.promo-step-num{font-size:72px;font-weight:900;letter-spacing:-3px;line-height:1;margin-bottom:16px;background:linear-gradient(135deg,var(--gold),var(--gold2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;opacity:.25}
-.promo-left h3{font-size:28px;font-weight:900;letter-spacing:-1px;margin-bottom:14px;color:var(--text);line-height:1.2}
-.promo-left p{font-size:15px;color:var(--text2);line-height:1.7;margin-bottom:22px}
-
-/* 태그 */
-.promo-tags{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:24px}
+.cinema-wrap{
+  position:relative;min-height:100vh;
+  background:var(--bg);overflow:hidden;
+  display:flex;flex-direction:column;justify-content:center;
+}
+.cinema-header{
+  text-align:center;padding:80px 6% 0;position:relative;z-index:2;
+}
+.cinema-bg{
+  position:absolute;inset:0;z-index:0;
+  transition:background 1.4s cubic-bezier(0.4,0,0.2,1);
+  pointer-events:none;
+}
+/* SCENES */
+.cinema-scene{
+  position:absolute;inset:0;
+  display:flex;align-items:center;gap:64px;
+  padding:160px 7% 100px;
+  z-index:1;opacity:0;
+  transform:translateY(40px) scale(0.97);
+  pointer-events:none;
+  transition:opacity 0.75s cubic-bezier(0.4,0,0.2,1),
+             transform 0.75s cubic-bezier(0.4,0,0.2,1);
+  will-change:opacity,transform;
+}
+.cinema-scene.cs-exit{
+  opacity:0;transform:translateY(-30px) scale(1.02);
+  transition:opacity 0.5s ease,transform 0.5s ease;
+}
+.cinema-scene.cs-active{
+  opacity:1;transform:translateY(0) scale(1);
+  pointer-events:auto;
+}
+/* LEFT */
+.cs-left{flex:0 0 42%;min-width:0}
+.cs-num{
+  font-family:'Montserrat',sans-serif;
+  font-size:96px;font-weight:900;line-height:1;
+  letter-spacing:-4px;margin-bottom:12px;
+  background:linear-gradient(135deg,var(--gold),var(--gold2));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+  opacity:0.18;
+  transform:translateX(-20px);
+  transition:opacity 0.6s 0.1s ease, transform 0.6s 0.1s ease;
+}
+.cs-active .cs-num{opacity:0.18;transform:translateX(0)}
+.cs-title{
+  font-family:'Montserrat',sans-serif;
+  font-size:clamp(30px,3.6vw,46px);font-weight:900;
+  line-height:1.15;letter-spacing:-1.5px;
+  color:var(--text);margin-bottom:18px;
+  opacity:0;transform:translateY(18px);
+  transition:opacity 0.6s 0.2s ease, transform 0.6s 0.2s ease;
+}
+.cs-active .cs-title{opacity:1;transform:translateY(0)}
+.cs-desc{
+  font-size:16px;color:var(--text2);line-height:1.75;
+  margin-bottom:24px;max-width:420px;
+  opacity:0;transform:translateY(14px);
+  transition:opacity 0.6s 0.35s ease, transform 0.6s 0.35s ease;
+}
+.cs-active .cs-desc{opacity:1;transform:translateY(0)}
+.cs-tags{
+  display:flex;flex-wrap:wrap;gap:8px;margin-bottom:28px;
+  opacity:0;transform:translateY(10px);
+  transition:opacity 0.5s 0.5s ease, transform 0.5s 0.5s ease;
+}
+.cs-active .cs-tags{opacity:1;transform:translateY(0)}
+.cs-extra{
+  opacity:0;transform:translateY(10px);
+  transition:opacity 0.5s 0.65s ease, transform 0.5s 0.65s ease;
+}
+.cs-active .cs-extra{opacity:1;transform:translateY(0)}
+/* RIGHT */
+.cs-right{
+  flex:1;min-width:0;
+  opacity:0;transform:translateX(40px) scale(0.96);
+  transition:opacity 0.75s 0.15s cubic-bezier(0.34,1.1,0.64,1),
+             transform 0.75s 0.15s cubic-bezier(0.34,1.1,0.64,1);
+}
+.cs-active .cs-right{opacity:1;transform:translateX(0) scale(1)}
+/* MOCKUP SHELL */
+.cs-mockup{
+  background:var(--card-bg);
+  border:1px solid var(--border2);
+  border-radius:22px;overflow:hidden;
+  backdrop-filter:blur(20px);
+  box-shadow:0 30px 80px rgba(0,0,0,0.45),0 0 0 1px var(--border);
+}
+[data-theme=light] .cs-mockup{box-shadow:0 16px 48px rgba(80,100,200,0.14)}
+.cs-mock-bar{
+  display:flex;align-items:center;gap:5px;
+  padding:11px 16px;border-bottom:1px solid var(--border);
+  background:rgba(0,0,0,0.18);
+}
+[data-theme=light] .cs-mock-bar{background:rgba(0,0,0,0.04)}
+.cs-mac{width:10px;height:10px;border-radius:50%;flex-shrink:0}
+.cs-mock-title{margin-left:8px;font-size:11px;color:var(--text3);font-weight:500}
+.cs-mock-body{padding:14px}
+/* LIST ITEMS */
+.cs-row{
+  display:flex;align-items:center;gap:10px;
+  padding:11px 12px;border-radius:12px;
+  background:rgba(255,255,255,0.05);
+  border:1px solid rgba(255,255,255,0.08);
+  margin-bottom:7px;
+  opacity:0;transform:translateX(-14px);
+  transition:opacity 0.4s ease,transform 0.4s ease;
+}
+[data-theme=light] .cs-row{background:rgba(0,0,0,0.03);border-color:rgba(0,0,0,0.07)}
+.cs-row.show{opacity:1;transform:translateX(0)}
+.cs-row-dot{width:7px;height:7px;min-width:7px;border-radius:50%;flex-shrink:0}
+.cs-row-name{font-size:12px;font-weight:700;color:var(--text);flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.cs-row-badge{font-size:10px;font-weight:800;padding:3px 9px;border-radius:20px;flex-shrink:0;white-space:nowrap}
+.cs-row-time{font-size:10px;color:var(--text3);flex-shrink:0}
+/* BAR ROWS */
+.cs-bar-row{
+  display:flex;align-items:center;gap:10px;
+  padding:10px 12px;border-radius:10px;
+  background:rgba(255,255,255,0.06);
+  border:1px solid rgba(255,255,255,0.08);
+  margin-bottom:7px;
+  opacity:0;transform:translateX(12px);
+  transition:opacity 0.4s ease,transform 0.4s ease;
+}
+[data-theme=light] .cs-bar-row{background:rgba(0,0,0,0.03)}
+.cs-bar-row.show{opacity:1;transform:translateX(0)}
+.cs-bar-fill{height:4px;border-radius:2px;width:0;transition:width 0.9s cubic-bezier(0.34,1.2,0.64,1)}
+/* CHART */
+.cs-chart-bars{display:flex;align-items:flex-end;gap:7px;height:110px;margin-bottom:14px}
+.cs-cbar{flex:1;border-radius:4px 4px 0 0;height:0;transition:height 0.7s cubic-bezier(0.34,1.2,0.64,1)}
+.cs-chart-meta{display:flex;gap:8px}
+.cs-chart-stat{flex:1;text-align:center;padding:10px 6px;background:rgba(255,255,255,0.04);border-radius:10px;border:1px solid rgba(255,255,255,0.08)}
+/* LIVE BOX */
+.cs-live-box{
+  display:inline-flex;align-items:center;gap:10px;
+  background:rgba(0,229,160,.08);border:1px solid rgba(0,229,160,.25);
+  border-radius:14px;padding:12px 20px;
+}
+.cs-live-dot{width:8px;height:8px;border-radius:50%;background:var(--emerald);box-shadow:0 0 8px var(--emerald);animation:livePulse 1.2s ease-in-out infinite;flex-shrink:0}
+.cs-live-label{font-size:12px;color:var(--text2);font-weight:600}
+.cs-live-num{font-size:28px;font-weight:900;color:var(--emerald);letter-spacing:-1px;font-family:'Montserrat',sans-serif}
+.cs-live-unit{font-size:13px;color:var(--emerald);font-weight:700}
+/* SALES COUNTER */
+.cs-sales-val{
+  font-size:42px;font-weight:900;letter-spacing:-2px;
+  color:var(--gold);font-family:'Montserrat',sans-serif;
+  text-shadow:0 0 40px var(--glow-gold);line-height:1;margin-bottom:8px;
+}
+.cs-sales-badge{display:inline-flex;padding:4px 14px;border-radius:20px;font-size:11px;font-weight:700;background:rgba(0,229,160,.12);border:1px solid rgba(0,229,160,.25);color:var(--emerald)}
+/* AUTO FILL */
+.cs-auto-box{display:flex;align-items:center;gap:10px;padding:10px 14px;margin-top:8px;border-radius:10px;background:rgba(167,139,250,.08);border:1px solid rgba(167,139,250,.22)}
+.cs-auto-track{flex:1;height:4px;background:rgba(167,139,250,.2);border-radius:2px;overflow:hidden}
+.cs-auto-fill{height:100%;width:0%;background:linear-gradient(90deg,#a78bfa,#c084fc);border-radius:2px;transition:width .1s linear}
+.cs-auto-pct{font-size:11px;font-weight:800;color:#a78bfa;flex-shrink:0;white-space:nowrap}
+/* FOOTER */
+.cs-mock-footer{display:flex;align-items:center;gap:8px;padding:10px 16px;border-top:1px solid var(--border)}
+.cs-badge-live{font-size:10px;font-weight:800;padding:3px 8px;border-radius:20px;background:rgba(0,229,160,.18);border:1px solid rgba(0,229,160,.35);color:var(--emerald);animation:livePulse 1.5s infinite}
+/* TIMELINE */
+.cinema-timeline{
+  position:absolute;bottom:0;left:0;right:0;z-index:3;
+  padding:0 7% 28px;
+}
+.ct-track{
+  height:2px;background:rgba(255,255,255,0.1);
+  border-radius:2px;overflow:hidden;margin-bottom:16px;
+}
+[data-theme=light] .ct-track{background:rgba(0,0,0,0.08)}
+.ct-fill{height:100%;width:0;background:linear-gradient(90deg,var(--gold),var(--emerald));border-radius:2px}
+.ct-chapters{display:flex;gap:0;border-top:1px solid rgba(255,255,255,0.06)}
+[data-theme=light] .ct-chapters{border-color:rgba(0,0,0,0.06)}
+.ct-chapter{
+  flex:1;padding:10px 8px;text-align:center;
+  font-size:12px;font-weight:600;color:var(--text3);
+  cursor:pointer;border:none;background:none;
+  font-family:inherit;letter-spacing:0.2px;
+  transition:color 0.3s;position:relative;
+}
+.ct-chapter::before{
+  content:'';position:absolute;top:-1px;left:0;right:0;height:2px;
+  background:var(--gold);transform:scaleX(0);transition:transform 0.3s;
+}
+.ct-chapter:hover{color:var(--text2)}
+.ct-chapter.ct-active{color:var(--gold)}
+.ct-chapter.ct-active::before{transform:scaleX(1)}
+/* PTAGs reuse */
 .ptag{padding:6px 14px;border-radius:100px;font-size:12px;font-weight:700;display:inline-flex;align-items:center;gap:4px}
 .ptag-gold   {background:rgba(245,200,66,.12);border:1px solid rgba(245,200,66,.3);color:var(--gold)}
-.ptag-emerald{background:rgba(0,229,160,.1) ;border:1px solid rgba(0,229,160,.25);color:var(--emerald)}
+.ptag-emerald{background:rgba(0,229,160,.1);border:1px solid rgba(0,229,160,.25);color:var(--emerald)}
 .ptag-sky    {background:rgba(56,189,248,.1);border:1px solid rgba(56,189,248,.25);color:var(--sky)}
 .ptag-rose   {background:rgba(251,113,133,.1);border:1px solid rgba(251,113,133,.25);color:var(--rose)}
 .ptag-purple {background:rgba(167,139,250,.1);border:1px solid rgba(167,139,250,.25);color:#a78bfa}
-
-/* 라이브 카운터 */
-.promo-live-box{display:inline-flex;align-items:center;gap:10px;background:rgba(0,229,160,.08);border:1px solid rgba(0,229,160,.25);border-radius:14px;padding:12px 18px}
-.promo-live-dot{width:8px;height:8px;border-radius:50%;background:var(--emerald);box-shadow:0 0 8px var(--emerald);animation:livePulse 1.2s ease-in-out infinite;flex-shrink:0}
 @keyframes livePulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(.8)}}
-.promo-live-label{font-size:12px;color:var(--text2);font-weight:600}
-.promo-live-num{font-size:26px;font-weight:900;color:var(--emerald);letter-spacing:-1px;font-family:'Montserrat',sans-serif}
-.promo-live-unit{font-size:13px;color:var(--emerald);font-weight:700}
-
-/* 매출 카운터 */
-.promo-count-big{margin-top:8px}
-.promo-count-label{font-size:12px;color:var(--text2);font-weight:600;margin-bottom:6px}
-.promo-count-val{font-size:38px;font-weight:900;letter-spacing:-2px;color:var(--gold);line-height:1;margin-bottom:10px;font-family:'Montserrat',sans-serif;text-shadow:0 0 30px var(--glow-gold)}
-.promo-count-badge{display:inline-flex;padding:4px 12px;border-radius:20px;font-size:11px;font-weight:700;background:rgba(0,229,160,.12);border:1px solid rgba(0,229,160,.25);color:var(--emerald)}
-
-/* 오른쪽 카드 */
-.promo-card-wrap{background:var(--card-bg);border:1px solid var(--border2);border-radius:20px;overflow:hidden;box-shadow:0 24px 60px rgba(0,0,0,.35);backdrop-filter:blur(20px)}
-[data-theme=light] .promo-card-wrap{box-shadow:0 12px 40px rgba(80,100,200,.12)}
-
-/* 맥OS 상단 바 */
-.promo-order-header{display:flex;align-items:center;gap:5px;padding:12px 16px;border-bottom:1px solid var(--border);background:rgba(0,0,0,.18)}
-[data-theme=light] .promo-order-header{background:rgba(0,0,0,.04)}
-.promo-mac-dot{width:10px;height:10px;min-width:10px;border-radius:50%;flex-shrink:0;display:inline-block}
-
-/* 주문 리스트 */
-.promo-order-list{padding:10px;display:flex;flex-direction:column;gap:6px;min-height:240px}
-.promo-order-footer{display:flex;align-items:center;gap:8px;padding:10px 16px;border-top:1px solid var(--border)}
-.promo-badge-live{font-size:10px;font-weight:800;padding:3px 8px;border-radius:20px;background:rgba(0,229,160,.18);border:1px solid rgba(0,229,160,.35);color:var(--emerald);animation:livePulse 1.5s infinite}
-
-/* 자동 발주서 */
-.promo-auto-box{display:flex;align-items:center;gap:10px;padding:10px 14px;margin:0 10px 10px;border-radius:10px;background:rgba(167,139,250,.08);border:1px solid rgba(167,139,250,.22)}
-.promo-auto-bar{flex:1;height:4px;background:rgba(167,139,250,.2);border-radius:2px;overflow:hidden}
-.promo-auto-fill{height:100%;width:0%;background:linear-gradient(90deg,#a78bfa,#c084fc);border-radius:2px;transition:width .1s linear}
-.promo-auto-pct{font-size:11px;font-weight:800;color:#a78bfa;flex-shrink:0;white-space:nowrap}
-
-/* 점 네비 */
-.promo-dots-wrap{display:flex;justify-content:center;gap:8px;margin-top:40px}
-.promo-dot-nav{width:7px;height:7px;border-radius:4px;background:var(--border2);cursor:pointer;transition:all .3s}
-.promo-dot-nav:hover{background:var(--gold)}
-.promo-dot-nav.active{width:24px;background:linear-gradient(90deg,var(--gold),var(--gold2));box-shadow:0 0 12px var(--glow-gold)}
-
-/* 반응형 */
-@media(max-width:900px){
-  .promo-step{grid-template-columns:1fr;gap:32px}
+/* RESPONSIVE */
+@media(max-width:1000px){
+  .cinema-scene{flex-direction:column;padding:110px 6% 130px;gap:36px;justify-content:center}
+  .cs-left{flex:none;width:100%}
+  .cs-right{flex:none;width:100%}
+  .cs-num{font-size:60px}
+  .cs-title{font-size:clamp(24px,5vw,34px)}
 }
 @media(max-width:600px){
-  .promo-section{padding:60px 4%}
-  .promo-nav{gap:6px}
-  .promo-nav-btn{font-size:11px;padding:8px 12px}
-  .promo-left{padding:0}
-  .promo-left h3{font-size:22px}
-  .promo-step-num{font-size:54px;margin-bottom:8px}
-  .promo-count-val{font-size:30px}
-  .promo-live-num{font-size:22px}
+  .cinema-scene{padding:100px 5% 120px;gap:28px}
+  .cs-num{font-size:48px;margin-bottom:6px}
+  .cs-title{font-size:26px;letter-spacing:-0.5px}
+  .cs-desc{font-size:14px}
+  .cs-sales-val{font-size:32px}
+  .ct-chapter{font-size:10px;padding:8px 4px}
 }
+
+
 </style>
 </head>
 <body>
@@ -1431,188 +1555,170 @@ footer{
 </div>
 
 
-<!-- ══ PROMO 애니메이션 ══ -->
-<div class="promo-section" id="promo">
-  <div class="tc">
-    <div class="section-eyebrow">⚡ 플랫폼 미리보기</div>
-    <h2 class="section-title">숫자로 보는 <span class="glow">유안 F&B</span></h2>
-    <p class="section-sub">입점부터 매출 분석까지, 실시간으로 움직이는 플랫폼을 직접 확인하세요.</p>
+<!-- ══ CINEMA SHOWCASE ══ -->
+<div class="cinema-wrap" id="promo">
+  <div class="cinema-bg" id="cinemaBg"></div>
+
+  <!-- 상단 뱃지 -->
+  <div style="position:absolute;top:100px;left:50%;transform:translateX(-50%);z-index:4;text-align:center;white-space:nowrap">
+    <div class="section-eyebrow">🎬 플랫폼 라이브 프리뷰</div>
   </div>
-  <div class="promo-nav">
-    <button class="promo-nav-btn active" onclick="goPStep(0)">🛒 주문 현황</button>
-    <button class="promo-nav-btn" onclick="goPStep(1)">🌾 상품 관리</button>
-    <button class="promo-nav-btn" onclick="goPStep(2)">💰 매출 분석</button>
-    <button class="promo-nav-btn" onclick="goPStep(3)">📦 도매 관리</button>
+
+  <!-- ─ SCENE 0: 실시간 주문 ─ -->
+  <div class="cinema-scene" id="cscene-0">
+    <div class="cs-left">
+      <div class="cs-num">01</div>
+      <h2 class="cs-title">실시간 주문이<br>쏟아져요</h2>
+      <p class="cs-desc">전국 842개 업체의 주문이 실시간으로 들어옵니다. 소매·도매·B2B 채널을 한 화면에서 통합 관리.</p>
+      <div class="cs-tags">
+        <span class="ptag ptag-gold">⚡ 실시간 수신</span>
+        <span class="ptag ptag-emerald">✅ 자동 확인</span>
+        <span class="ptag ptag-sky">📱 모바일 알림</span>
+      </div>
+      <div class="cs-extra">
+        <div class="cs-live-box">
+          <div class="cs-live-dot"></div>
+          <span class="cs-live-label">오늘 주문</span>
+          <span class="cs-live-num" id="csLive0">0</span>
+          <span class="cs-live-unit">건</span>
+        </div>
+      </div>
+    </div>
+    <div class="cs-right">
+      <div class="cs-mockup">
+        <div class="cs-mock-bar">
+          <span class="cs-mac" style="background:#ff5f57"></span>
+          <span class="cs-mac" style="background:#febc2e"></span>
+          <span class="cs-mac" style="background:#28c840"></span>
+          <span class="cs-mock-title">유안 F&B — 주문 관리</span>
+        </div>
+        <div style="padding:12px" id="csOrderList"></div>
+        <div class="cs-mock-footer">
+          <span class="cs-badge-live">● LIVE</span>
+          <span style="font-size:11px;color:var(--text3)">자동 새로고침 중...</span>
+        </div>
+      </div>
+    </div>
   </div>
-  <div class="promo-prog-wrap"><div class="promo-prog-bar" id="promoProgBar"></div></div>
-  <div class="promo-stage">
 
-    <!-- STEP 0 -->
-    <div class="promo-step active" id="pstep-0">
-      <div class="promo-left">
-        <div class="promo-step-num">01</div>
-        <h3>실시간 주문이 쏟아져요</h3>
-        <p>전국 842개 업체의 주문이 실시간으로 들어옵니다. 소매·도매·B2B 채널 통합 관리.</p>
-        <div class="promo-tags">
-          <span class="ptag ptag-gold">⚡ 실시간 수신</span>
-          <span class="ptag ptag-emerald">✅ 자동 확인</span>
-          <span class="ptag ptag-sky">📱 모바일 알림</span>
-        </div>
-        <div class="promo-live-box">
-          <div class="promo-live-dot"></div>
-          <span class="promo-live-label">오늘 주문</span>
-          <span class="promo-live-num" id="liveOrderCount">0</span>
-          <span class="promo-live-unit">건</span>
-        </div>
+  <!-- ─ SCENE 1: 상품 관리 ─ -->
+  <div class="cinema-scene" id="cscene-1">
+    <div class="cs-left">
+      <div class="cs-num">02</div>
+      <h2 class="cs-title">전국 먹거리가<br>한 곳에</h2>
+      <p class="cs-desc">수산물·농산물·축산물·가공식품까지. 카테고리별 실시간 재고와 신선도를 한눈에 파악하세요.</p>
+      <div class="cs-tags">
+        <span class="ptag ptag-sky">🐟 수산물</span>
+        <span class="ptag ptag-emerald">🌾 농산물</span>
+        <span class="ptag ptag-rose">🥩 축산물</span>
+        <span class="ptag ptag-gold">🏭 가공식품</span>
       </div>
-      <div class="promo-right">
-        <div class="promo-card-wrap">
-          <div class="promo-order-header">
-            <span class="promo-mac-dot" style="background:#ff5f57"></span>
-            <span class="promo-mac-dot" style="background:#febc2e"></span>
-            <span class="promo-mac-dot" style="background:#28c840"></span>
-            <span style="margin-left:8px;font-size:11px;color:var(--text3);">유안 F&amp;B — 주문 관리</span>
-          </div>
-          <div class="promo-order-list" id="orderList"></div>
-          <div class="promo-order-footer">
-            <span class="promo-badge-live">● LIVE</span>
-            <span style="font-size:11px;color:var(--text3);">자동 새로고침 중...</span>
-          </div>
+    </div>
+    <div class="cs-right">
+      <div class="cs-mockup">
+        <div class="cs-mock-bar">
+          <span class="cs-mac" style="background:#ff5f57"></span>
+          <span class="cs-mac" style="background:#febc2e"></span>
+          <span class="cs-mac" style="background:#28c840"></span>
+          <span class="cs-mock-title">재고 현황</span>
+        </div>
+        <div style="padding:12px" id="csProductList">
+          <div class="cs-bar-row" data-w="85%" data-c="#00e5a0"><span style="font-size:18px;flex-shrink:0">🐟</span><div style="flex:1;min-width:0"><div style="font-size:12px;font-weight:700;color:var(--text)">영광 법성포 굴비</div><div style="font-size:10px;color:var(--text3);margin-top:2px">신선 · 재고 85%</div></div><div style="width:64px;flex-shrink:0"><div class="cs-bar-fill" style="background:#00e5a0" data-w="85%"></div></div></div>
+          <div class="cs-bar-row" data-w="62%" data-c="#f5c842"><span style="font-size:18px;flex-shrink:0">🌾</span><div style="flex:1;min-width:0"><div style="font-size:12px;font-weight:700;color:var(--text)">완도 유기농 쌀</div><div style="font-size:10px;color:var(--text3);margin-top:2px">GAP인증 · 재고 62%</div></div><div style="width:64px;flex-shrink:0"><div class="cs-bar-fill" style="background:#f5c842" data-w="62%"></div></div></div>
+          <div class="cs-bar-row" data-w="91%" data-c="#38bdf8"><span style="font-size:18px;flex-shrink:0">🥩</span><div style="flex:1;min-width:0"><div style="font-size:12px;font-weight:700;color:var(--text)">제주 흑돼지 삼겹살</div><div style="font-size:10px;color:var(--text3);margin-top:2px">무항생제 · 재고 91%</div></div><div style="width:64px;flex-shrink:0"><div class="cs-bar-fill" style="background:#38bdf8" data-w="91%"></div></div></div>
+          <div class="cs-bar-row" data-w="28%" data-c="#fb7185"><span style="font-size:18px;flex-shrink:0">🦀</span><div style="flex:1;min-width:0"><div style="font-size:12px;font-weight:700;color:var(--text)">동해 살아있는 홍게</div><div style="font-size:10px;color:var(--text3);margin-top:2px">당일 직송 · 재고 28%</div></div><div style="width:64px;flex-shrink:0"><div class="cs-bar-fill" style="background:#fb7185" data-w="28%"></div></div></div>
+          <div class="cs-bar-row" data-w="74%" data-c="#a78bfa"><span style="font-size:18px;flex-shrink:0">🍯</span><div style="flex:1;min-width:0"><div style="font-size:12px;font-weight:700;color:var(--text)">지리산 천연 벌꿀</div><div style="font-size:10px;color:var(--text3);margin-top:2px">유기농 인증 · 재고 74%</div></div><div style="width:64px;flex-shrink:0"><div class="cs-bar-fill" style="background:#a78bfa" data-w="74%"></div></div></div>
         </div>
       </div>
     </div>
-
-    <!-- STEP 1 -->
-    <div class="promo-step" id="pstep-1">
-      <div class="promo-left">
-        <div class="promo-step-num">02</div>
-        <h3>전국 먹거리가 한 곳에</h3>
-        <p>수산물·농산물·축산물·가공식품까지. 카테고리별 실시간 재고와 신선도를 한눈에.</p>
-        <div class="promo-tags">
-          <span class="ptag ptag-gold">🐟 수산물</span>
-          <span class="ptag ptag-emerald">🌾 농산물</span>
-          <span class="ptag ptag-rose">🥩 축산물</span>
-          <span class="ptag ptag-sky">🏭 가공식품</span>
-        </div>
-      </div>
-      <div class="promo-right">
-        <div class="promo-card-wrap">
-          <div class="promo-order-header">
-            <span class="promo-mac-dot" style="background:#ff5f57"></span>
-            <span class="promo-mac-dot" style="background:#febc2e"></span>
-            <span class="promo-mac-dot" style="background:#28c840"></span>
-            <span style="margin-left:8px;font-size:11px;color:var(--text3);">재고 현황</span>
-          </div>
-          <div id="productGrid" style="padding:12px">
-            <div class="ppi" data-w="85%" data-c="#00e5a0" style="display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:10px;background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.08);margin-bottom:6px;opacity:0;transition:opacity 0.4s ease,transform 0.4s ease;transform:translateX(10px)"><span style="font-size:20px;flex-shrink:0">🐟</span><div style="flex:1;min-width:0"><div style="font-size:12px;font-weight:700;color:#f1f5f9">영광 법성포 굴비</div><div style="font-size:10px;color:#94a3b8;margin-top:2px">신선 · 재고 85%</div></div><div style="width:60px;flex-shrink:0"><div class="ppi-b" style="height:4px;border-radius:2px;width:0;transition:width 0.9s cubic-bezier(0.34,1.2,0.64,1);background:#00e5a0"></div></div></div>
-            <div class="ppi" data-w="62%" data-c="#f5c842" style="display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:10px;background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.08);margin-bottom:6px;opacity:0;transition:opacity 0.4s ease,transform 0.4s ease;transform:translateX(10px)"><span style="font-size:20px;flex-shrink:0">🌾</span><div style="flex:1;min-width:0"><div style="font-size:12px;font-weight:700;color:#f1f5f9">완도 유기농 쌀</div><div style="font-size:10px;color:#94a3b8;margin-top:2px">GAP인증 · 재고 62%</div></div><div style="width:60px;flex-shrink:0"><div class="ppi-b" style="height:4px;border-radius:2px;width:0;transition:width 0.9s cubic-bezier(0.34,1.2,0.64,1);background:#f5c842"></div></div></div>
-            <div class="ppi" data-w="91%" data-c="#38bdf8" style="display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:10px;background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.08);margin-bottom:6px;opacity:0;transition:opacity 0.4s ease,transform 0.4s ease;transform:translateX(10px)"><span style="font-size:20px;flex-shrink:0">🥩</span><div style="flex:1;min-width:0"><div style="font-size:12px;font-weight:700;color:#f1f5f9">제주 흑돼지 삼겹살</div><div style="font-size:10px;color:#94a3b8;margin-top:2px">무항생제 · 재고 91%</div></div><div style="width:60px;flex-shrink:0"><div class="ppi-b" style="height:4px;border-radius:2px;width:0;transition:width 0.9s cubic-bezier(0.34,1.2,0.64,1);background:#38bdf8"></div></div></div>
-            <div class="ppi" data-w="28%" data-c="#fb7185" style="display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:10px;background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.08);margin-bottom:6px;opacity:0;transition:opacity 0.4s ease,transform 0.4s ease;transform:translateX(10px)"><span style="font-size:20px;flex-shrink:0">🦀</span><div style="flex:1;min-width:0"><div style="font-size:12px;font-weight:700;color:#f1f5f9">동해 살아있는 홍게</div><div style="font-size:10px;color:#94a3b8;margin-top:2px">당일 직송 · 재고 28%</div></div><div style="width:60px;flex-shrink:0"><div class="ppi-b" style="height:4px;border-radius:2px;width:0;transition:width 0.9s cubic-bezier(0.34,1.2,0.64,1);background:#fb7185"></div></div></div>
-            <div class="ppi" data-w="74%" data-c="#a78bfa" style="display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:10px;background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.08);margin-bottom:6px;opacity:0;transition:opacity 0.4s ease,transform 0.4s ease;transform:translateX(10px)"><span style="font-size:20px;flex-shrink:0">🍯</span><div style="flex:1;min-width:0"><div style="font-size:12px;font-weight:700;color:#f1f5f9">지리산 천연 벌꿀</div><div style="font-size:10px;color:#94a3b8;margin-top:2px">유기농 인증 · 재고 74%</div></div><div style="width:60px;flex-shrink:0"><div class="ppi-b" style="height:4px;border-radius:2px;width:0;transition:width 0.9s cubic-bezier(0.34,1.2,0.64,1);background:#a78bfa"></div></div></div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- STEP 2 -->
-    <div class="promo-step" id="pstep-2">
-      <div class="promo-left">
-        <div class="promo-step-num">03</div>
-        <h3>매출이 실시간으로 쌓여요</h3>
-        <p>채널별·상품별·기간별 매출을 한눈에. 데이터 기반으로 판매 전략을 세우세요.</p>
-        <div class="promo-tags">
-          <span class="ptag ptag-gold">📊 실시간 분석</span>
-          <span class="ptag ptag-emerald">📈 성장 추이</span>
-        </div>
-        <div class="promo-count-big">
-          <div class="promo-count-label">이번 달 누적 매출</div>
-          <div class="promo-count-val" id="salesCount">₩0</div>
-          <div class="promo-count-badge">▲ 전월 대비 +23%</div>
-        </div>
-      </div>
-      <div class="promo-right">
-        <div class="promo-card-wrap">
-          <div class="promo-order-header">
-            <span class="promo-mac-dot" style="background:#ff5f57"></span>
-            <span class="promo-mac-dot" style="background:#febc2e"></span>
-            <span class="promo-mac-dot" style="background:#28c840"></span>
-            <span style="margin-left:8px;font-size:11px;color:var(--text3);">매출 대시보드</span>
-          </div>
-          <div style="padding:16px">
-            <div id="chartBars" style="display:flex;align-items:flex-end;gap:8px;height:110px;margin-bottom:14px">
-              <div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;gap:4px;height:100%"><div class="cb" data-h="45%" style="width:100%;border-radius:4px 4px 0 0;height:0;transition:height 0.7s cubic-bezier(0.34,1.2,0.64,1);background:#f5c842;opacity:0.65"></div><div style="font-size:10px;color:#64748b;">1월</div></div>
-              <div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;gap:4px;height:100%"><div class="cb" data-h="58%" style="width:100%;border-radius:4px 4px 0 0;height:0;transition:height 0.7s cubic-bezier(0.34,1.2,0.64,1);background:#f5c842;opacity:0.65"></div><div style="font-size:10px;color:#64748b;">2월</div></div>
-              <div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;gap:4px;height:100%"><div class="cb" data-h="42%" style="width:100%;border-radius:4px 4px 0 0;height:0;transition:height 0.7s cubic-bezier(0.34,1.2,0.64,1);background:#f5c842;opacity:0.65"></div><div style="font-size:10px;color:#64748b;">3월</div></div>
-              <div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;gap:4px;height:100%"><div class="cb" data-h="72%" style="width:100%;border-radius:4px 4px 0 0;height:0;transition:height 0.7s cubic-bezier(0.34,1.2,0.64,1);background:#f5c842;opacity:0.65"></div><div style="font-size:10px;color:#64748b;">4월</div></div>
-              <div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;gap:4px;height:100%"><div class="cb" data-h="65%" style="width:100%;border-radius:4px 4px 0 0;height:0;transition:height 0.7s cubic-bezier(0.34,1.2,0.64,1);background:#f5c842;opacity:0.65"></div><div style="font-size:10px;color:#64748b;">5월</div></div>
-              <div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;gap:4px;height:100%"><div class="cb" data-h="100%" style="width:100%;border-radius:4px 4px 0 0;height:0;transition:height 0.7s cubic-bezier(0.34,1.2,0.64,1);background:#00e5a0;box-shadow:0 0 12px #00e5a0"></div><div style="font-size:10px;color:#64748b;color:#00e5a0;font-weight:700">6월</div></div>
-            </div>
-            <div style="display:flex;gap:8px">
-              <div style="flex:1;text-align:center;padding:10px 6px;background:rgba(255,255,255,0.05);border-radius:10px;border:1px solid rgba(255,255,255,0.08)"><div style="font-size:15px;font-weight:900;color:#00e5a0">₩2.4억</div><div style="font-size:10px;color:#64748b;margin-top:3px">누적 GMV</div></div>
-              <div style="flex:1;text-align:center;padding:10px 6px;background:rgba(255,255,255,0.05);border-radius:10px;border:1px solid rgba(255,255,255,0.08)"><div style="font-size:15px;font-weight:900;color:#f5c842">842+</div><div style="font-size:10px;color:#64748b;margin-top:3px">활성 업체</div></div>
-              <div style="flex:1;text-align:center;padding:10px 6px;background:rgba(255,255,255,0.05);border-radius:10px;border:1px solid rgba(255,255,255,0.08)"><div style="font-size:15px;font-weight:900;color:#38bdf8">99%</div><div style="font-size:10px;color:#64748b;margin-top:3px">만족도</div></div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- STEP 3 -->
-    <div class="promo-step" id="pstep-3">
-      <div class="promo-left">
-        <div class="promo-step-num">04</div>
-        <h3>도매 업무가 자동화돼요</h3>
-        <p>거래처별 맞춤 단가, 자동 발주서, 재고 연동. 복잡한 도매 업무를 시스템이 처리합니다.</p>
-        <div class="promo-tags">
-          <span class="ptag ptag-gold">📋 자동 발주서</span>
-          <span class="ptag ptag-purple">🔄 재고 연동</span>
-        </div>
-      </div>
-      <div class="promo-right">
-        <div class="promo-card-wrap">
-          <div class="promo-order-header">
-            <span class="promo-mac-dot" style="background:#ff5f57"></span>
-            <span class="promo-mac-dot" style="background:#febc2e"></span>
-            <span class="promo-mac-dot" style="background:#28c840"></span>
-            <span style="margin-left:8px;font-size:11px;color:var(--text3);">도매 거래처 현황</span>
-          </div>
-          <div style="padding:10px;display:flex;flex-direction:column;gap:0">
-            <div style="display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:12px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);margin-bottom:6px;opacity:1;transform:none">
-              <span style="display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;min-width:34px;max-width:34px;border-radius:10px;font-size:12px;font-weight:900;flex-shrink:0;flex-grow:0;overflow:hidden;background:linear-gradient(135deg,#f5c842,#e8a020);color:#111">㈜</span>
-              <div style="flex:1;min-width:0;overflow:hidden"><div style="font-size:12px;font-weight:700;color:#f1f5f9;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">㈜대한수산유통</div><div style="font-size:10px;color:#94a3b8;margin-top:2px">월 발주 42회 · 도매가 적용</div></div>
-              <span style="font-size:11px;font-weight:800;flex-shrink:0;white-space:nowrap;color:#00e5a0">VIP</span>
-            </div>
-            <div style="display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:12px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);margin-bottom:6px;opacity:1;transform:none">
-              <span style="display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;min-width:34px;max-width:34px;border-radius:10px;font-size:12px;font-weight:900;flex-shrink:0;flex-grow:0;overflow:hidden;background:linear-gradient(135deg,#38bdf8,#60a5fa);color:#111">동</span>
-              <div style="flex:1;min-width:0;overflow:hidden"><div style="font-size:12px;font-weight:700;color:#f1f5f9;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">동해식품㈜</div><div style="font-size:10px;color:#94a3b8;margin-top:2px">월 발주 28회 · 특별 단가</div></div>
-              <span style="font-size:11px;font-weight:800;flex-shrink:0;white-space:nowrap;color:#38bdf8">우수</span>
-            </div>
-            <div style="display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:12px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);margin-bottom:6px;opacity:1;transform:none">
-              <span style="display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;min-width:34px;max-width:34px;border-radius:10px;font-size:12px;font-weight:900;flex-shrink:0;flex-grow:0;overflow:hidden;background:linear-gradient(135deg,#00e5a0,#34d399);color:#111">남</span>
-              <div style="flex:1;min-width:0;overflow:hidden"><div style="font-size:12px;font-weight:700;color:#f1f5f9;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">남해농수산</div><div style="font-size:10px;color:#94a3b8;margin-top:2px">월 발주 19회 · 일반 단가</div></div>
-              <span style="font-size:11px;font-weight:800;flex-shrink:0;white-space:nowrap;color:#f5c842">일반</span>
-            </div>
-            <div style="display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:12px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);margin-bottom:6px;opacity:1;transform:none">
-              <span style="display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;min-width:34px;max-width:34px;border-radius:10px;font-size:12px;font-weight:900;flex-shrink:0;flex-grow:0;overflow:hidden;background:linear-gradient(135deg,#a78bfa,#c084fc);color:#fff">제</span>
-              <div style="flex:1;min-width:0;overflow:hidden"><div style="font-size:12px;font-weight:700;color:#f1f5f9;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">제주도 로컬푸드</div><div style="font-size:10px;color:#94a3b8;margin-top:2px">월 발주 35회 · 도매가 적용</div></div>
-              <span style="font-size:11px;font-weight:800;flex-shrink:0;white-space:nowrap;color:#a78bfa">파트너</span>
-            </div>
-          </div>
-          <div class="promo-auto-box">
-            <span style="font-size:12px;color:var(--text3);">🤖 자동 발주서 생성 중</span>
-            <div class="promo-auto-bar"><div class="promo-auto-fill" id="autoFill"></div></div>
-            <span class="promo-auto-pct" id="autoPct">0%</span>
-          </div>
-        </div>
-      </div>
-    </div>
-
   </div>
-  <div class="promo-dots-wrap">
-    <div class="promo-dot-nav active" onclick="goPStep(0)"></div>
-    <div class="promo-dot-nav" onclick="goPStep(1)"></div>
-    <div class="promo-dot-nav" onclick="goPStep(2)"></div>
-    <div class="promo-dot-nav" onclick="goPStep(3)"></div>
+
+  <!-- ─ SCENE 2: 매출 분석 ─ -->
+  <div class="cinema-scene" id="cscene-2">
+    <div class="cs-left">
+      <div class="cs-num">03</div>
+      <h2 class="cs-title">매출이 실시간으로<br>쌓여요</h2>
+      <p class="cs-desc">채널별·상품별·기간별 매출을 한눈에. 데이터 기반으로 다음 달 판매 전략을 미리 세우세요.</p>
+      <div class="cs-tags">
+        <span class="ptag ptag-gold">📊 실시간 분석</span>
+        <span class="ptag ptag-emerald">📈 성장 추이</span>
+      </div>
+      <div class="cs-extra">
+        <div style="font-size:12px;color:var(--text2);font-weight:600;margin-bottom:8px">이번 달 누적 매출</div>
+        <div class="cs-sales-val" id="csSalesVal">₩0</div>
+        <span class="cs-sales-badge">▲ 전월 대비 +23%</span>
+      </div>
+    </div>
+    <div class="cs-right">
+      <div class="cs-mockup">
+        <div class="cs-mock-bar">
+          <span class="cs-mac" style="background:#ff5f57"></span>
+          <span class="cs-mac" style="background:#febc2e"></span>
+          <span class="cs-mac" style="background:#28c840"></span>
+          <span class="cs-mock-title">매출 대시보드</span>
+        </div>
+        <div style="padding:16px">
+          <div class="cs-chart-bars" id="csChartBars">
+            <div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;gap:4px;height:100%"><div class="cs-cbar" data-h="45%" style="width:100%;background:#f5c842;opacity:.65"></div><div style="font-size:10px;color:var(--text3)">1월</div></div>
+            <div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;gap:4px;height:100%"><div class="cs-cbar" data-h="58%" style="width:100%;background:#f5c842;opacity:.65"></div><div style="font-size:10px;color:var(--text3)">2월</div></div>
+            <div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;gap:4px;height:100%"><div class="cs-cbar" data-h="42%" style="width:100%;background:#f5c842;opacity:.65"></div><div style="font-size:10px;color:var(--text3)">3월</div></div>
+            <div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;gap:4px;height:100%"><div class="cs-cbar" data-h="72%" style="width:100%;background:#f5c842;opacity:.65"></div><div style="font-size:10px;color:var(--text3)">4월</div></div>
+            <div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;gap:4px;height:100%"><div class="cs-cbar" data-h="65%" style="width:100%;background:#f5c842;opacity:.65"></div><div style="font-size:10px;color:var(--text3)">5월</div></div>
+            <div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;gap:4px;height:100%"><div class="cs-cbar" data-h="100%" style="width:100%;background:#00e5a0;box-shadow:0 0 14px #00e5a0"></div><div style="font-size:10px;color:#00e5a0;font-weight:700">6월</div></div>
+          </div>
+          <div class="cs-chart-meta">
+            <div class="cs-chart-stat"><div style="font-size:15px;font-weight:900;color:#00e5a0">₩2.4억</div><div style="font-size:10px;color:var(--text3);margin-top:3px">누적 GMV</div></div>
+            <div class="cs-chart-stat"><div style="font-size:15px;font-weight:900;color:#f5c842">842+</div><div style="font-size:10px;color:var(--text3);margin-top:3px">활성 업체</div></div>
+            <div class="cs-chart-stat"><div style="font-size:15px;font-weight:900;color:#38bdf8">99%</div><div style="font-size:10px;color:var(--text3);margin-top:3px">만족도</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─ SCENE 3: 도매 자동화 ─ -->
+  <div class="cinema-scene" id="cscene-3">
+    <div class="cs-left">
+      <div class="cs-num">04</div>
+      <h2 class="cs-title">도매 업무가<br>자동화돼요</h2>
+      <p class="cs-desc">거래처별 맞춤 단가, 자동 발주서, 재고 연동. 복잡한 도매 업무를 시스템이 대신 처리합니다.</p>
+      <div class="cs-tags">
+        <span class="ptag ptag-gold">📋 자동 발주서</span>
+        <span class="ptag ptag-purple">🔄 재고 연동</span>
+      </div>
+    </div>
+    <div class="cs-right">
+      <div class="cs-mockup">
+        <div class="cs-mock-bar">
+          <span class="cs-mac" style="background:#ff5f57"></span>
+          <span class="cs-mac" style="background:#febc2e"></span>
+          <span class="cs-mac" style="background:#28c840"></span>
+          <span class="cs-mock-title">도매 거래처 현황</span>
+        </div>
+        <div style="padding:10px" id="csWholesaleList">
+          <div class="cs-row"><div style="width:34px;height:34px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:900;background:linear-gradient(135deg,#f5c842,#e8a020);color:#111;flex-shrink:0">㈜</div><div style="flex:1;min-width:0"><div style="font-size:12px;font-weight:700;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis">㈜대한수산유통</div><div style="font-size:10px;color:var(--text3);margin-top:2px">월 발주 42회 · 도매가 적용</div></div><span style="font-size:11px;font-weight:800;color:#00e5a0;flex-shrink:0">VIP</span></div>
+          <div class="cs-row"><div style="width:34px;height:34px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:900;background:linear-gradient(135deg,#38bdf8,#60a5fa);color:#111;flex-shrink:0">동</div><div style="flex:1;min-width:0"><div style="font-size:12px;font-weight:700;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis">동해식품㈜</div><div style="font-size:10px;color:var(--text3);margin-top:2px">월 발주 28회 · 특별 단가</div></div><span style="font-size:11px;font-weight:800;color:#38bdf8;flex-shrink:0">우수</span></div>
+          <div class="cs-row"><div style="width:34px;height:34px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:900;background:linear-gradient(135deg,#00e5a0,#34d399);color:#111;flex-shrink:0">남</div><div style="flex:1;min-width:0"><div style="font-size:12px;font-weight:700;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis">남해농수산</div><div style="font-size:10px;color:var(--text3);margin-top:2px">월 발주 19회 · 일반 단가</div></div><span style="font-size:11px;font-weight:800;color:#f5c842;flex-shrink:0">일반</span></div>
+          <div class="cs-row"><div style="width:34px;height:34px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:900;background:linear-gradient(135deg,#a78bfa,#c084fc);color:#fff;flex-shrink:0">제</div><div style="flex:1;min-width:0"><div style="font-size:12px;font-weight:700;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis">제주도 로컬푸드</div><div style="font-size:10px;color:var(--text3);margin-top:2px">월 발주 35회 · 도매가 적용</div></div><span style="font-size:11px;font-weight:800;color:#a78bfa;flex-shrink:0">파트너</span></div>
+        </div>
+        <div class="cs-auto-box">
+          <span style="font-size:12px;color:var(--text3)">🤖 자동 발주서 생성 중</span>
+          <div class="cs-auto-track"><div class="cs-auto-fill" id="csAutoFill"></div></div>
+          <span class="cs-auto-pct" id="csAutoPct">0%</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 타임라인 -->
+  <div class="cinema-timeline">
+    <div class="ct-track"><div class="ct-fill" id="ctFill"></div></div>
+    <div class="ct-chapters">
+      <button class="ct-chapter ct-active" onclick="goScene(0)">🛒 주문 현황</button>
+      <button class="ct-chapter" onclick="goScene(1)">🌾 상품 관리</button>
+      <button class="ct-chapter" onclick="goScene(2)">💰 매출 분석</button>
+      <button class="ct-chapter" onclick="goScene(3)">📦 도매 자동화</button>
+    </div>
   </div>
 </div>
 
@@ -2309,8 +2415,190 @@ document.querySelectorAll('.btn-glow').forEach(btn=>{
   btn.addEventListener('mouseleave',()=>{btn.style.transform=''});
 });
 
-/* ══ PROMO 애니메이션 ══ */
-const ORDERS=[
+/* ══ CINEMA SHOWCASE ══ */
+const CS_ORDERS=[
+  {buyer:'㈜영신수산',status:'접수완료',sc:'#00e5a0',time:'방금'},
+  {buyer:'해진식품',status:'처리중',sc:'#f5c842',time:'1분 전'},
+  {buyer:'동해수산㈜',status:'출고완료',sc:'#a78bfa',time:'3분 전'},
+  {buyer:'남해로컬푸드',status:'배송중',sc:'#38bdf8',time:'7분 전'},
+  {buyer:'제주도청',status:'접수완료',sc:'#00e5a0',time:'12분 전'},
+];
+const CS_NEW_ORDERS=[
+  {buyer:'강원수산협동조합',status:'접수완료',sc:'#00e5a0',time:'방금'},
+  {buyer:'목포수협',status:'접수완료',sc:'#00e5a0',time:'방금'},
+  {buyer:'경남수협',status:'처리중',sc:'#f5c842',time:'방금'},
+];
+const CS_SCENE_BG=[
+  'radial-gradient(ellipse 75% 75% at 65% 55%,rgba(0,229,160,0.10) 0%,transparent 65%)',
+  'radial-gradient(ellipse 75% 75% at 65% 55%,rgba(245,200,66,0.10) 0%,transparent 65%)',
+  'radial-gradient(ellipse 75% 75% at 65% 55%,rgba(56,189,248,0.10) 0%,transparent 65%)',
+  'radial-gradient(ellipse 75% 75% at 65% 55%,rgba(167,139,250,0.10) 0%,transparent 65%)',
+];
+const SCENE_DUR=7500; // ms per scene
+let cScene=-1,cSceneTimer=null,cAnimTimer=null,cAutoTimer=null,cNewOrdTimer=null,cOrdRunning=false,cNoIdx=0;
+
+function goScene(n,auto){
+  // clear all
+  clearTimeout(cSceneTimer);clearInterval(cAnimTimer);clearInterval(cAutoTimer);clearInterval(cNewOrdTimer);
+  cOrdRunning=false;
+
+  // exit current
+  const prev=document.getElementById('cscene-'+cScene);
+  if(prev){prev.classList.add('cs-exit');setTimeout(()=>prev.classList.remove('cs-active','cs-exit'),550);}
+
+  cScene=n;
+
+  // chapters
+  document.querySelectorAll('.ct-chapter').forEach((c,i)=>c.classList.toggle('ct-active',i===n));
+
+  // ambient bg
+  const bg=document.getElementById('cinemaBg');
+  if(bg) bg.style.background=CS_SCENE_BG[n];
+
+  // enter new scene after prev exits
+  setTimeout(()=>{
+    const next=document.getElementById('cscene-'+n);
+    if(next) next.classList.add('cs-active');
+    // run scene-specific animation after CSS transition settles
+    setTimeout(()=>{
+      if(n===0) csRunScene0();
+      if(n===1) csRunScene1();
+      if(n===2) csRunScene2();
+      if(n===3) csRunScene3();
+    },350);
+  },auto?200:80);
+
+  // timeline fill
+  const fill=document.getElementById('ctFill');
+  if(fill){
+    fill.style.transition='none';fill.style.width='0%';
+    setTimeout(()=>{
+      fill.style.transition=`width ${SCENE_DUR}ms linear`;fill.style.width='100%';
+    },auto?350:150);
+  }
+
+  // auto-advance
+  cSceneTimer=setTimeout(()=>goScene((cScene+1)%4,true),SCENE_DUR);
+}
+
+/* ── Scene 0: 주문 ── */
+function csMakeOrder(o){
+  const d=document.createElement('div');
+  d.className='cs-row';
+  d.innerHTML=`<div class="cs-row-dot" style="background:${o.sc};box-shadow:0 0 6px ${o.sc}"></div><div class="cs-row-name">${o.buyer}</div><span class="cs-row-badge" style="background:${o.sc}22;border:1px solid ${o.sc}55;color:${o.sc}">${o.status}</span><span class="cs-row-time">${o.time}</span>`;
+  return d;
+}
+function csRunScene0(){
+  const list=document.getElementById('csOrderList');
+  const cnt=document.getElementById('csLive0');
+  if(!list) return;
+  list.innerHTML='';
+  CS_ORDERS.forEach((o,i)=>{
+    const d=csMakeOrder(o);
+    list.appendChild(d);
+    setTimeout(()=>d.classList.add('show'),i*240);
+  });
+  // count up
+  let v=0;const t=1284;
+  cAnimTimer=setInterval(()=>{
+    v=Math.min(v+44,t);
+    if(cnt) cnt.textContent=v.toLocaleString();
+    if(v>=t){clearInterval(cAnimTimer);csStartNewOrders();}
+  },28);
+}
+function csStartNewOrders(){
+  if(cOrdRunning) return;
+  cOrdRunning=true;
+  const list=document.getElementById('csOrderList');
+  const cnt=document.getElementById('csLive0');
+  cNewOrdTimer=setInterval(()=>{
+    const scene=document.getElementById('cscene-0');
+    if(!scene||!scene.classList.contains('cs-active')){cOrdRunning=false;return;}
+    const o=CS_NEW_ORDERS[cNoIdx++%CS_NEW_ORDERS.length];
+    const d=csMakeOrder(o);
+    if(list){list.insertBefore(d,list.firstChild);setTimeout(()=>d.classList.add('show'),50);}
+    if(list&&list.children.length>6) list.removeChild(list.lastChild);
+    if(cnt) cnt.textContent=(parseInt(cnt.textContent.replace(/,/g,''))+1).toLocaleString();
+  },2000);
+}
+
+/* ── Scene 1: 상품 ── */
+function csRunScene1(){
+  const rows=document.querySelectorAll('#csProductList .cs-bar-row');
+  rows.forEach((row,i)=>{
+    row.classList.remove('show');
+    const bar=row.querySelector('.cs-bar-fill');
+    if(bar) bar.style.width='0';
+    setTimeout(()=>{
+      row.classList.add('show');
+      setTimeout(()=>{if(bar) bar.style.width=bar.dataset.w||row.dataset.w;},220);
+    },i*200);
+  });
+}
+
+/* ── Scene 2: 매출 ── */
+function csRunScene2(){
+  // reset + animate bars
+  const bars=document.querySelectorAll('#csChartBars .cs-cbar');
+  bars.forEach((b,i)=>{
+    b.style.height='0';
+    setTimeout(()=>{b.style.height=b.dataset.h;},i*90+60);
+  });
+  // count up
+  let v=0;const t=240000000;
+  const el=document.getElementById('csSalesVal');
+  if(el) el.textContent='₩0';
+  cAnimTimer=setInterval(()=>{
+    v=Math.min(v+8500000,t);
+    if(el) el.textContent='₩'+(v/100000000).toFixed(1)+'억';
+    if(v>=t) clearInterval(cAnimTimer);
+  },32);
+}
+
+/* ── Scene 3: 도매 ── */
+function csRunScene3(){
+  const rows=document.querySelectorAll('#csWholesaleList .cs-row');
+  rows.forEach((row,i)=>{
+    row.classList.remove('show');
+    setTimeout(()=>row.classList.add('show'),i*230);
+  });
+  // auto-fill bar
+  const fill=document.getElementById('csAutoFill');
+  const pct=document.getElementById('csAutoPct');
+  let val=0;
+  if(fill) fill.style.width='0%';
+  if(pct) pct.textContent='0%';
+  cAutoTimer=setInterval(()=>{
+    val=Math.min(val+2,100);
+    if(fill) fill.style.width=val+'%';
+    if(pct) pct.textContent=val+'%';
+    if(val>=100){
+      clearInterval(cAutoTimer);
+      if(pct) pct.textContent='✅ 완료';
+      setTimeout(()=>{
+        const s=document.getElementById('cscene-3');
+        if(s&&s.classList.contains('cs-active')){val=0;if(fill)fill.style.width='0%';if(pct)pct.textContent='0%';setTimeout(csRunScene3,400);}
+      },1800);
+    }
+  },42);
+}
+
+/* ── IntersectionObserver 자동 시작 ── */
+(function(){
+  const wrap=document.getElementById('promo');
+  if(!wrap) return;
+  let started=false;
+  const obs=new IntersectionObserver(entries=>{
+    if(entries[0].isIntersecting&&!started){
+      started=true;
+      goScene(0,false);
+    }
+  },{threshold:0.12});
+  obs.observe(wrap);
+})();
+</script>
+</body>
+</html>
   {buyer:'㈜영신수산',product:'굴비 10kg × 5박스',status:'접수완료',sc:'#00e5a0',time:'방금'},
   {buyer:'해진식품',product:'갈치 5kg × 10박스',status:'처리중',sc:'#f5c842',time:'1분 전'},
   {buyer:'동해수산㈜',product:'새우 3kg × 20박스',status:'출고완료',sc:'#a78bfa',time:'3분 전'},
