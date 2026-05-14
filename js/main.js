@@ -178,58 +178,67 @@ document.querySelectorAll('.btn-glow').forEach(btn=>{
   btn.addEventListener('mouseleave',()=>{btn.style.transform=''});
 });
 
+
 /* ══ PROMO 애니메이션 ══ */
 const ORDERS=[
-  {buyer:'㈜영신수산',product:'굴비 10kg × 5박스',status:'접수완료',sc:'var(--emerald)',dc:'#22d3ee',time:'방금'},
-  {buyer:'해진식품',product:'갈치 5kg × 10박스',status:'처리중',sc:'var(--gold)',dc:'var(--gold)',time:'1분 전'},
+  {buyer:'㈜영신수산',product:'굴비 10kg × 5박스',status:'접수완료',sc:'#00e5a0',dc:'#00e5a0',time:'방금'},
+  {buyer:'해진식품',product:'갈치 5kg × 10박스',status:'처리중',sc:'#f5c842',dc:'#f5c842',time:'1분 전'},
   {buyer:'동해수산㈜',product:'새우 3kg × 20박스',status:'출고완료',sc:'#a78bfa',dc:'#a78bfa',time:'3분 전'},
-  {buyer:'남해로컬푸드',product:'전복 1kg × 8박스',status:'배송중',sc:'var(--sky)',dc:'var(--sky)',time:'7분 전'},
-  {buyer:'제주도청',product:'흑돼지 5kg × 12박스',status:'접수완료',sc:'var(--emerald)',dc:'#22d3ee',time:'12분 전'},
+  {buyer:'남해로컬푸드',product:'전복 1kg × 8박스',status:'배송중',sc:'#38bdf8',dc:'#38bdf8',time:'7분 전'},
+  {buyer:'제주도청',product:'흑돼지 5kg × 12박스',status:'접수완료',sc:'#00e5a0',dc:'#00e5a0',time:'12분 전'},
 ];
 const NEW_ORDERS=[
-  {buyer:'강원수산협동조합',product:'오징어 2kg × 15박스',status:'접수완료',sc:'var(--emerald)',dc:'#22d3ee',time:'방금'},
-  {buyer:'목포수협',product:'세발낙지 1kg × 6박스',status:'접수완료',sc:'var(--emerald)',dc:'#22d3ee',time:'방금'},
+  {buyer:'강원수산협동조합',product:'오징어 2kg × 15박스',status:'접수완료',sc:'#00e5a0',dc:'#00e5a0',time:'방금'},
+  {buyer:'목포수협',product:'세발낙지 1kg × 6박스',status:'접수완료',sc:'#00e5a0',dc:'#00e5a0',time:'방금'},
 ];
 let pCurrent=0,pTimer=null,pAnimTimer=null,autoFillTimer=null,noIdx=0,newOrderTimer=null;
 
 function goPStep(n){
   clearInterval(pTimer);clearInterval(pAnimTimer);clearInterval(autoFillTimer);clearInterval(newOrderTimer);
+  // 탭/점 업데이트
   document.querySelectorAll('.promo-nav-btn').forEach((b,i)=>b.classList.toggle('active',i===n));
   document.querySelectorAll('.promo-dot-nav').forEach((d,i)=>d.classList.toggle('active',i===n));
+  // 스텝 전환
   document.querySelectorAll('.promo-step').forEach((s,i)=>{
-    if(i===n){s.classList.add('active');s.style.animation='none';requestAnimationFrame(()=>{s.style.animation=''})}
-    else s.classList.remove('active');
+    if(i===n){s.style.display='grid';}
+    else{s.style.display='none';}
   });
+  // 진행바
   const bar=document.getElementById('promoProgBar');
   if(bar) bar.style.width=((n+1)*25)+'%';
   pCurrent=n;
-  if(n===0) runStep0();
-  if(n===2) runStep2();
-  if(n===3) runStep3();
+  // 스텝별 애니메이션
+  setTimeout(()=>{
+    if(n===0) runStep0();
+    if(n===1) runStep1();
+    if(n===2) runStep2();
+    if(n===3) runStep3();
+  },50);
   pTimer=setInterval(()=>goPStep((pCurrent+1)%4),5000);
 }
 
-function makeOrderItem(o){
+/* STEP 0: 주문 순차 등장 + 라이브 카운터 */
+function makeOrderEl(o){
   const d=document.createElement('div');
-  d.className='pol-item';
-  d.innerHTML=`<div class="pol-dot" style="background:${o.dc};box-shadow:0 0 6px ${o.dc}"></div>
-    <div class="pol-buyer">${o.buyer}</div>
-    <div class="pol-product">${o.product}</div>
-    <span class="pol-status" style="background:${o.sc}22;border:1px solid ${o.sc}44;color:${o.sc}">${o.status}</span>
-    <div class="pol-time">${o.time}</div>`;
+  d.style.cssText='display:flex;align-items:center;gap:8px;padding:10px 12px;border-radius:10px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.08);margin-bottom:6px;opacity:0;transition:opacity 0.4s,transform 0.4s;transform:translateX(-12px)';
+  d.innerHTML=`
+    <div style="width:7px;height:7px;min-width:7px;border-radius:50%;background:${o.dc};box-shadow:0 0 6px ${o.dc};flex-shrink:0"></div>
+    <div style="flex:1;min-width:0;font-size:12px;font-weight:700;color:#f1f5f9;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${o.buyer}</div>
+    <div style="font-size:11px;color:#94a3b8;flex:1;min-width:0;display:none" class="pol-prod">${o.product}</div>
+    <span style="font-size:10px;font-weight:800;padding:3px 8px;border-radius:20px;background:${o.sc}22;border:1px solid ${o.sc}55;color:${o.sc};flex-shrink:0;white-space:nowrap">${o.status}</span>
+    <div style="font-size:10px;color:#475569;flex-shrink:0;white-space:nowrap">${o.time}</div>`;
   return d;
 }
-
 function runStep0(){
   const list=document.getElementById('orderList');
   if(!list) return;
   list.innerHTML='';
   ORDERS.forEach((o,i)=>{
-    const d=makeOrderItem(o);
+    const d=makeOrderEl(o);
     list.appendChild(d);
-    setTimeout(()=>d.classList.add('show'),i*280);
+    setTimeout(()=>{d.style.opacity='1';d.style.transform='translateX(0)'},i*280);
   });
-  let cnt=0;const target=1284;
+  let cnt=0; const target=1284;
   const el=document.getElementById('liveOrderCount');
   pAnimTimer=setInterval(()=>{
     cnt=Math.min(cnt+42,target);
@@ -237,23 +246,49 @@ function runStep0(){
     if(cnt>=target){clearInterval(pAnimTimer);startNewOrders();}
   },30);
 }
-
+let newOrderRunning=false;
 function startNewOrders(){
+  if(newOrderRunning) return;
+  newOrderRunning=true;
   const list=document.getElementById('orderList');
   const el=document.getElementById('liveOrderCount');
-  if(!list) return;
   newOrderTimer=setInterval(()=>{
+    if(!document.getElementById('pstep-0') || document.getElementById('pstep-0').style.display==='none'){
+      newOrderRunning=false; return;
+    }
     const o=NEW_ORDERS[noIdx++%NEW_ORDERS.length];
-    const d=makeOrderItem(o);
-    list.insertBefore(d,list.firstChild);
-    setTimeout(()=>d.classList.add('show'),50);
-    if(list.children.length>5) list.removeChild(list.lastChild);
+    const d=makeOrderEl(o);
+    d.style.opacity='0'; d.style.transform='translateX(-12px)';
+    if(list){list.insertBefore(d,list.firstChild);setTimeout(()=>{d.style.opacity='1';d.style.transform='translateX(0)'},50);}
+    if(list && list.children.length>5) list.removeChild(list.lastChild);
     if(el) el.textContent=(parseInt(el.textContent.replace(/,/g,''))+1).toLocaleString();
   },2200);
 }
 
+/* STEP 1: 상품 바 JS로 직접 애니메이션 */
+function runStep1(){
+  const items=document.querySelectorAll('.ppi');
+  items.forEach((item,i)=>{
+    item.style.opacity='0'; item.style.transform='translateX(10px)';
+    const bar=item.querySelector('.ppi-b');
+    if(bar) bar.style.width='0';
+    setTimeout(()=>{
+      item.style.opacity='1'; item.style.transform='translateX(0)';
+      setTimeout(()=>{ if(bar) bar.style.width=item.dataset.w; },200);
+    },i*200);
+  });
+}
+
+/* STEP 2: 차트 바 + 카운트업 JS로 직접 */
 function runStep2(){
-  let v=0;const target=240000000;
+  // 바 차트
+  const bars=document.querySelectorAll('.cb');
+  bars.forEach((b,i)=>{
+    b.style.height='0';
+    setTimeout(()=>{ b.style.height=b.dataset.h; },i*100+50);
+  });
+  // 카운트업
+  let v=0; const target=240000000;
   const el=document.getElementById('salesCount');
   pAnimTimer=setInterval(()=>{
     v=Math.min(v+8000000,target);
@@ -262,20 +297,27 @@ function runStep2(){
   },35);
 }
 
+/* STEP 3: 자동 발주서 진행바 */
 function runStep3(){
   let val=0;
   const fill=document.getElementById('autoFill');
   const pct=document.getElementById('autoPct');
+  if(fill) fill.style.width='0%';
+  if(pct) pct.textContent='0%';
   autoFillTimer=setInterval(()=>{
     val=Math.min(val+2,100);
     if(fill) fill.style.width=val+'%';
-    if(pct)  pct.textContent=val+'%';
+    if(pct) pct.textContent=val+'%';
     if(val>=100){
       clearInterval(autoFillTimer);
       if(pct) pct.textContent='✅ 완료';
-      setTimeout(()=>{val=0;if(fill) fill.style.width='0%';if(pct) pct.textContent='0%';runStep3();},1500);
+      setTimeout(()=>{runStep3();},1500);
     }
   },40);
 }
 
-document.addEventListener('DOMContentLoaded',()=>{ goPStep(0); });
+document.addEventListener('DOMContentLoaded',()=>{
+  // 초기 상태: 모든 스텝 숨김
+  document.querySelectorAll('.promo-step').forEach(s=>s.style.display='none');
+  goPStep(0);
+});
