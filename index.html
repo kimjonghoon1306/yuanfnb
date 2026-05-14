@@ -1336,30 +1336,24 @@ footer{
   </div>
 </div>
 
-</div>
 
-<!-- ══ PROMO 애니메이션 섹션 ══ -->
+<!-- ══ PROMO 애니메이션 ══ -->
 <div class="promo-section" id="promo">
   <div class="tc">
     <div class="section-eyebrow">⚡ 플랫폼 미리보기</div>
     <h2 class="section-title">숫자로 보는 <span class="glow">유안 F&B</span></h2>
     <p class="section-sub">입점부터 매출 분석까지, 실시간으로 움직이는 플랫폼을 직접 확인하세요.</p>
   </div>
-
-  <!-- 탭 네비 -->
   <div class="promo-nav">
-    <button class="promo-nav-btn active" data-step="0" onclick="goPStep(0)">🛒 주문 현황</button>
-    <button class="promo-nav-btn" data-step="1" onclick="goPStep(1)">🌾 상품 관리</button>
-    <button class="promo-nav-btn" data-step="2" onclick="goPStep(2)">💰 매출 분석</button>
-    <button class="promo-nav-btn" data-step="3" onclick="goPStep(3)">📦 도매 관리</button>
+    <button class="promo-nav-btn active" onclick="goPStep(0)">🛒 주문 현황</button>
+    <button class="promo-nav-btn" onclick="goPStep(1)">🌾 상품 관리</button>
+    <button class="promo-nav-btn" onclick="goPStep(2)">💰 매출 분석</button>
+    <button class="promo-nav-btn" onclick="goPStep(3)">📦 도매 관리</button>
   </div>
-  <!-- 진행 바 -->
   <div class="promo-prog-wrap"><div class="promo-prog-bar" id="promoProgBar"></div></div>
-
-  <!-- 스텝 컨테이너 -->
   <div class="promo-stage">
 
-    <!-- STEP 0: 주문 현황 -->
+    <!-- STEP 0 -->
     <div class="promo-step active" id="pstep-0">
       <div class="promo-left">
         <div class="promo-step-num">01</div>
@@ -1370,7 +1364,6 @@ footer{
           <span class="ptag ptag-emerald">✅ 자동 확인</span>
           <span class="ptag ptag-sky">📱 모바일 알림</span>
         </div>
-        <!-- 라이브 카운터 -->
         <div class="promo-live-box">
           <div class="promo-live-dot"></div>
           <span class="promo-live-label">오늘 주문</span>
@@ -1381,12 +1374,12 @@ footer{
       <div class="promo-right">
         <div class="promo-card-wrap">
           <div class="promo-order-header">
-            <span class="promo-dot-red"></span><span class="promo-dot-yellow"></span><span class="promo-dot-green"></span>
-            <span style="margin-left:8px;font-size:11px;color:var(--text3);">유안 F&B — 주문 관리</span>
+            <span class="promo-mac-dot" style="background:#ff5f57"></span>
+            <span class="promo-mac-dot" style="background:#febc2e"></span>
+            <span class="promo-mac-dot" style="background:#28c840"></span>
+            <span style="margin-left:8px;font-size:11px;color:var(--text3);">유안 F&amp;B — 주문 관리</span>
           </div>
-          <div class="promo-order-list" id="orderList">
-            <!-- JS로 생성 -->
-          </div>
+          <div class="promo-order-list" id="orderList"></div>
           <div class="promo-order-footer">
             <span class="promo-badge-live">● LIVE</span>
             <span style="font-size:11px;color:var(--text3);">자동 새로고침 중...</span>
@@ -1395,7 +1388,7 @@ footer{
       </div>
     </div>
 
-    <!-- STEP 1: 상품 관리 -->
+    <!-- STEP 1 -->
     <div class="promo-step" id="pstep-1">
       <div class="promo-left">
         <div class="promo-step-num">02</div>
@@ -1411,41 +1404,23 @@ footer{
       <div class="promo-right">
         <div class="promo-card-wrap">
           <div class="promo-order-header">
-            <span class="promo-dot-red"></span><span class="promo-dot-yellow"></span><span class="promo-dot-green"></span>
+            <span class="promo-mac-dot" style="background:#ff5f57"></span>
+            <span class="promo-mac-dot" style="background:#febc2e"></span>
+            <span class="promo-mac-dot" style="background:#28c840"></span>
             <span style="margin-left:8px;font-size:11px;color:var(--text3);">재고 현황</span>
           </div>
           <div class="promo-product-grid">
-            <div class="promo-product-item" style="--d:0.05s">
-              <span class="ppi-icon">🐟</span>
-              <div class="ppi-info"><div class="ppi-name">영광 법성포 굴비</div><div class="ppi-sub">신선 · 재고 85%</div></div>
-              <div class="ppi-bar-wrap"><div class="ppi-bar" style="--w:85%;--c:var(--emerald)"></div></div>
-            </div>
-            <div class="promo-product-item" style="--d:0.15s">
-              <span class="ppi-icon">🌾</span>
-              <div class="ppi-info"><div class="ppi-name">완도 유기농 쌀</div><div class="ppi-sub">GAP인증 · 재고 62%</div></div>
-              <div class="ppi-bar-wrap"><div class="ppi-bar" style="--w:62%;--c:var(--gold)"></div></div>
-            </div>
-            <div class="promo-product-item" style="--d:0.25s">
-              <span class="ppi-icon">🥩</span>
-              <div class="ppi-info"><div class="ppi-name">제주 흑돼지 삼겹살</div><div class="ppi-sub">무항생제 · 재고 91%</div></div>
-              <div class="ppi-bar-wrap"><div class="ppi-bar" style="--w:91%;--c:var(--sky)"></div></div>
-            </div>
-            <div class="promo-product-item" style="--d:0.35s">
-              <span class="ppi-icon">🦀</span>
-              <div class="ppi-info"><div class="ppi-name">동해 살아있는 홍게</div><div class="ppi-sub">당일 직송 · 재고 28%</div></div>
-              <div class="ppi-bar-wrap"><div class="ppi-bar" style="--w:28%;--c:var(--rose)"></div></div>
-            </div>
-            <div class="promo-product-item" style="--d:0.45s">
-              <span class="ppi-icon">🍯</span>
-              <div class="ppi-info"><div class="ppi-name">지리산 천연 벌꿀</div><div class="ppi-sub">유기농 인증 · 재고 74%</div></div>
-              <div class="ppi-bar-wrap"><div class="ppi-bar" style="--w:74%;--c:#a78bfa"></div></div>
-            </div>
+            <div class="promo-product-item" style="--d:0.05s"><span class="ppi-icon">🐟</span><div class="ppi-info"><div class="ppi-name">영광 법성포 굴비</div><div class="ppi-sub">신선 · 재고 85%</div></div><div class="ppi-bar-wrap"><div class="ppi-bar" style="--w:85%;--c:var(--emerald)"></div></div></div>
+            <div class="promo-product-item" style="--d:0.15s"><span class="ppi-icon">🌾</span><div class="ppi-info"><div class="ppi-name">완도 유기농 쌀</div><div class="ppi-sub">GAP인증 · 재고 62%</div></div><div class="ppi-bar-wrap"><div class="ppi-bar" style="--w:62%;--c:var(--gold)"></div></div></div>
+            <div class="promo-product-item" style="--d:0.25s"><span class="ppi-icon">🥩</span><div class="ppi-info"><div class="ppi-name">제주 흑돼지 삼겹살</div><div class="ppi-sub">무항생제 · 재고 91%</div></div><div class="ppi-bar-wrap"><div class="ppi-bar" style="--w:91%;--c:var(--sky)"></div></div></div>
+            <div class="promo-product-item" style="--d:0.35s"><span class="ppi-icon">🦀</span><div class="ppi-info"><div class="ppi-name">동해 살아있는 홍게</div><div class="ppi-sub">당일 직송 · 재고 28%</div></div><div class="ppi-bar-wrap"><div class="ppi-bar" style="--w:28%;--c:var(--rose)"></div></div></div>
+            <div class="promo-product-item" style="--d:0.45s"><span class="ppi-icon">🍯</span><div class="ppi-info"><div class="ppi-name">지리산 천연 벌꿀</div><div class="ppi-sub">유기농 인증 · 재고 74%</div></div><div class="ppi-bar-wrap"><div class="ppi-bar" style="--w:74%;--c:#a78bfa"></div></div></div>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- STEP 2: 매출 분석 -->
+    <!-- STEP 2 -->
     <div class="promo-step" id="pstep-2">
       <div class="promo-left">
         <div class="promo-step-num">03</div>
@@ -1464,10 +1439,11 @@ footer{
       <div class="promo-right">
         <div class="promo-card-wrap">
           <div class="promo-order-header">
-            <span class="promo-dot-red"></span><span class="promo-dot-yellow"></span><span class="promo-dot-green"></span>
+            <span class="promo-mac-dot" style="background:#ff5f57"></span>
+            <span class="promo-mac-dot" style="background:#febc2e"></span>
+            <span class="promo-mac-dot" style="background:#28c840"></span>
             <span style="margin-left:8px;font-size:11px;color:var(--text3);">매출 대시보드</span>
           </div>
-          <!-- 미니 바 차트 -->
           <div class="promo-chart">
             <div class="promo-chart-bars">
               <div class="pcb-item"><div class="pcb-bar" style="--h:45%;--c:var(--gold)"></div><div class="pcb-label">1월</div></div>
@@ -1487,7 +1463,7 @@ footer{
       </div>
     </div>
 
-    <!-- STEP 3: 도매 관리 -->
+    <!-- STEP 3 -->
     <div class="promo-step" id="pstep-3">
       <div class="promo-left">
         <div class="promo-step-num">04</div>
@@ -1501,32 +1477,17 @@ footer{
       <div class="promo-right">
         <div class="promo-card-wrap">
           <div class="promo-order-header">
-            <span class="promo-dot-red"></span><span class="promo-dot-yellow"></span><span class="promo-dot-green"></span>
+            <span class="promo-mac-dot" style="background:#ff5f57"></span>
+            <span class="promo-mac-dot" style="background:#febc2e"></span>
+            <span class="promo-mac-dot" style="background:#28c840"></span>
             <span style="margin-left:8px;font-size:11px;color:var(--text3);">도매 거래처 현황</span>
           </div>
           <div class="promo-wholesale-list">
-            <div class="pwl-item" style="--d:0.05s">
-              <div class="pwl-avatar" style="background:linear-gradient(135deg,var(--gold),var(--gold2))">㈜</div>
-              <div class="pwl-info"><div class="pwl-name">㈜대한수산유통</div><div class="pwl-sub">월 발주 42회 · 도매가 적용</div></div>
-              <div class="pwl-badge" style="color:var(--emerald)">VIP</div>
-            </div>
-            <div class="pwl-item" style="--d:0.15s">
-              <div class="pwl-avatar" style="background:linear-gradient(135deg,var(--sky),#60a5fa)">동</div>
-              <div class="pwl-info"><div class="pwl-name">동해식품㈜</div><div class="pwl-sub">월 발주 28회 · 특별 단가</div></div>
-              <div class="pwl-badge" style="color:var(--sky)">우수</div>
-            </div>
-            <div class="pwl-item" style="--d:0.25s">
-              <div class="pwl-avatar" style="background:linear-gradient(135deg,var(--emerald),#34d399)">남</div>
-              <div class="pwl-info"><div class="pwl-name">남해농수산</div><div class="pwl-sub">월 발주 19회 · 일반 단가</div></div>
-              <div class="pwl-badge" style="color:var(--gold)">일반</div>
-            </div>
-            <div class="pwl-item" style="--d:0.35s">
-              <div class="pwl-avatar" style="background:linear-gradient(135deg,#a78bfa,#c084fc)">제</div>
-              <div class="pwl-info"><div class="pwl-name">제주도 로컬푸드</div><div class="pwl-sub">월 발주 35회 · 도매가 적용</div></div>
-              <div class="pwl-badge" style="color:#a78bfa">파트너</div>
-            </div>
+            <div class="pwl-item" style="--d:0.05s"><div class="pwl-avatar" style="background:linear-gradient(135deg,var(--gold),var(--gold2))">㈜</div><div class="pwl-info"><div class="pwl-name">㈜대한수산유통</div><div class="pwl-sub">월 발주 42회 · 도매가 적용</div></div><div class="pwl-badge" style="color:var(--emerald)">VIP</div></div>
+            <div class="pwl-item" style="--d:0.15s"><div class="pwl-avatar" style="background:linear-gradient(135deg,var(--sky),#60a5fa)">동</div><div class="pwl-info"><div class="pwl-name">동해식품㈜</div><div class="pwl-sub">월 발주 28회 · 특별 단가</div></div><div class="pwl-badge" style="color:var(--sky)">우수</div></div>
+            <div class="pwl-item" style="--d:0.25s"><div class="pwl-avatar" style="background:linear-gradient(135deg,var(--emerald),#34d399)">남</div><div class="pwl-info"><div class="pwl-name">남해농수산</div><div class="pwl-sub">월 발주 19회 · 일반 단가</div></div><div class="pwl-badge" style="color:var(--gold)">일반</div></div>
+            <div class="pwl-item" style="--d:0.35s"><div class="pwl-avatar" style="background:linear-gradient(135deg,#a78bfa,#c084fc)">제</div><div class="pwl-info"><div class="pwl-name">제주도 로컬푸드</div><div class="pwl-sub">월 발주 35회 · 도매가 적용</div></div><div class="pwl-badge" style="color:#a78bfa">파트너</div></div>
           </div>
-          <!-- 자동 발주서 생성 애니메이션 -->
           <div class="promo-auto-box">
             <span style="font-size:12px;color:var(--text3);">🤖 자동 발주서 생성 중</span>
             <div class="promo-auto-bar"><div class="promo-auto-fill" id="autoFill"></div></div>
@@ -1536,14 +1497,12 @@ footer{
       </div>
     </div>
 
-  </div><!-- promo-stage -->
-
-  <!-- 하단 점 네비 -->
+  </div>
   <div class="promo-dots-wrap">
-    <div class="promo-dot-nav active" data-step="0" onclick="goPStep(0)"></div>
-    <div class="promo-dot-nav" data-step="1" onclick="goPStep(1)"></div>
-    <div class="promo-dot-nav" data-step="2" onclick="goPStep(2)"></div>
-    <div class="promo-dot-nav" data-step="3" onclick="goPStep(3)"></div>
+    <div class="promo-dot-nav active" onclick="goPStep(0)"></div>
+    <div class="promo-dot-nav" onclick="goPStep(1)"></div>
+    <div class="promo-dot-nav" onclick="goPStep(2)"></div>
+    <div class="promo-dot-nav" onclick="goPStep(3)"></div>
   </div>
 </div>
 
